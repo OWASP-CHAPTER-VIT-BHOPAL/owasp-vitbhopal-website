@@ -1,11 +1,9 @@
 const navItems = [
-    { name: "Home", href: "/" },
     { name: "About", href: "/about" },
     { name: "Members", href: "/members" },
     { name: "Achivements", href: "/achivements" },
     { name: "Image Gallery", href: "/gallery" },
     { name: "Events", href: "/events" },
-    { name: "Contact Us", href: "/contact" }
 ];
 
 const footerItems = [
