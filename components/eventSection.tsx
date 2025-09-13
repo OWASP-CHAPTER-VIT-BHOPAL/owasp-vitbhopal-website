@@ -89,7 +89,7 @@ const UpcomingEvent: React.FC<UpcomingEventProps> = ({ events }) => {
                             <div>
                                 <div className="text-sm font-medium text-[var(--muted-text)]">Date: {event.date}</div>
                                 <div className="text-sm font-medium text-[var(--muted-text)]">Time: {event.time}</div>
-                                <div className="text-sm font-medium text-[var(--muted-text)]">Location: {event.venu}</div>
+                                <div className="text-sm font-medium text-[var(--muted-text)]">Location: {event.venue}</div>
                             </div>
                         </div>
                     </div>
