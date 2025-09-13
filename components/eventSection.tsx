@@ -108,7 +108,7 @@ const EventSection = () => {
                     <div className="text-7xl font-medium">Our Events</div>
                     <div className="w-full h-[2] bg-white/12" />
                     <div className="text-sm font-normal text-[var(--muted-text)]">
-                        Over the years we’ve transformed the face of cybersecurity, therby therefore realise regardless thereafter unrestored underestimated variety of various undisputed achievments
+                        Over the years, we’ve transformed the face of cybersecurity, thereby achieving a variety of undisputed accomplishments.
                     </div>
                     <UpcomingEvent events={upCommingEvents} />
                 </div>
