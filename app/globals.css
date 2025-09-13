@@ -5,7 +5,9 @@
   --background: #1B1A1D;
   --foreground: #ffffff;
   --text-colour: #1D1D1F;
+  --muted-text: #ffffff99;
   --muted: #ffffff89;
+  --border: #ffffff1A;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-figtree);
