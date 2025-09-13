@@ -3,6 +3,7 @@
 import { Container } from "./container";
 import React, { useState } from "react";
 import { upCommingEvents, pastEvents } from "../Content/Events";
+import Image from "next/image";
 
 interface AccordionProps {
     title: string;
@@ -36,7 +37,7 @@ const EventCollapsible: React.FC<AccordionProps> = ({ title, imageSrc, descripti
             {open && (
                 <div className="flex gap-6 mt-4 items-start">
                     {imageSrc && (
-                        <img
+                        <Image
                             src={imageSrc}
                             alt={title}
                             className="w-40 h-32 object-cover rounded-xl bg-[#111] aspect-square"
@@ -78,7 +79,7 @@ const UpcomingEvent: React.FC<UpcomingEventProps> = ({ events }) => {
                 {events.map((event, idx) => (
                     <div key={idx} className="flex flex-col md:flex-row gap-6 items-center mb-6">
                         {event.imgUrl ? (
-                            <img src={event.imgUrl} alt={event.title} className="w-full md:w-1/2 h-58 bg-white rounded-2xl aspect-square object-cover" />
+                            <Image src={event.imgUrl} alt={event.title} className="w-full md:w-1/2 h-58 bg-white rounded-2xl aspect-square object-cover" />
                         ) : (
                             <div className="w-full md:w-1/2 h-58 bg-white rounded-2xl aspect-square" />
                         )}

@@ -4,6 +4,7 @@
 /node_modules
 /.pnp
 .pnp.*
+.vscode
 .yarn/*
 !.yarn/patches
 !.yarn/plugins
