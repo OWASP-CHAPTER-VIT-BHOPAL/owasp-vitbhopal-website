@@ -1,26 +1,32 @@
-import type { Metadata } from 'next'
-import { GeistSans } from 'geist/font/sans'
-import { GeistMono } from 'geist/font/mono'
-import { Analytics } from '@vercel/analytics/next'
-import './globals.css'
+import type { Metadata } from "next";
+import { Figtree } from "next/font/google";
+import "./globals.css";
+import Navbar from "@/components/navbar";
+
+const figtree = Figtree({
+  variable: "--font-figtree",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
 
 export const metadata: Metadata = {
-  title: 'v0 App',
-  description: 'Created with v0',
-  generator: 'v0.app',
-}
+  title: "OWASP VIT Bhopal University Student Chapter",
+  description: "Elite Club of Web Application Security at VIT Bhopal University",
+};
 
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode
+  children: React.ReactNode;
 }>) {
   return (
     <html lang="en">
-      <body className={`font-sans ${GeistSans.variable} ${GeistMono.variable}`}>
+      <body
+        className={`${figtree.variable} antialiased`}
+      >
+        <Navbar />
         {children}
-        <Analytics />
       </body>
     </html>
-  )
+  );
 }
