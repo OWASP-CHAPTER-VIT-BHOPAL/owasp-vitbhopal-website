@@ -59,7 +59,7 @@ interface UpcomingEventProps {
         link?: string;
         imgUrl?: string;
         time?: string;
-        venu?: string;
+        venue?: string;
     }>;
 }
 
