@@ -6,7 +6,7 @@ const upCommingEvents = [
         link: "https://www.owasp.org/events/appsec-india-2024/",
         imgUrl: "/images/events/appsec-india-2024.jpg",
         time: "10:00 AM - 4:00 PM",
-        venu: "VIT Bhopal University"
+        venue: "VIT Bhopal University"
     },
 ]
 
