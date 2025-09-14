@@ -1,13 +1,12 @@
 @import "tailwindcss";
 
-
 :root {
-  --background: #1B1A1D;
+  --background: #1b1a1d;
   --foreground: #ffffff;
-  --text-colour: #1D1D1F;
+  --text-colour: #1d1d1f;
   --muted-text: #ffffff99;
   --muted: #ffffff89;
-  --border: #ffffff1A;
+  --border: #ffffff1a;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-figtree);
@@ -17,4 +16,12 @@ body {
   background-color: var(--color-background);
   color: var(--color-foreground);
   font-family: var(--font-figtree), sans-serif;
+}
+
+.scroll-hide {
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
