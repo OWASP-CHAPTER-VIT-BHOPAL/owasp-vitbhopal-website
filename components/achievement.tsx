@@ -15,7 +15,7 @@ const Achievement = () => {
         therefore realise regardless thereafter unrestored underestimated
         variety of various undisputed achievments
       </div>
-      <div className="flex overflow-x-auto gap-6 pb-4 scrollbar-thin scrollbar-thumb-gray-700 scrollbar-track-gray-900">
+      <div className="flex overflow-x-auto gap-6 pb-4 scroll-hide">
         {achivementsContent.map((item, idx) => (
           <div key={idx} className="flex flex-col items-center min-w-[320px]">
             <div className="bg-white/5 rounded-[18px] border-[3px] border-white/40 flex-shrink-0 w-full overflow-hidden">
