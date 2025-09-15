@@ -3,6 +3,8 @@ import { Container } from "./container";
 import { footerItems, extraFooterItems, socialMediaLinks } from "@/Content/LayoutElements";
 import * as Icons from "@tabler/icons-react";
 
+type IconComponent = React.ComponentType<{ size?: number }>;
+
 const Footer = () => {
   return (
     <Container>
@@ -34,11 +36,10 @@ const Footer = () => {
           </div>
           <div className="flex gap-3 items-center mt-2">
             {socialMediaLinks.map((item, idx) => {
-              const Icon = item.icon && (Icons as any)[item.icon] ? (Icons as any)[item.icon] : null;
+              const Icon = item.icon && (Icons as unknown as Record<string, IconComponent>)[item.icon] ? (Icons as unknown as Record<string, IconComponent>)[item.icon] : null;
               return (
-                <div className="p-2 rounded-full bg-black transition-colors duration-200">
+                <div key={idx} className="p-2 rounded-full bg-black transition-colors duration-200">
                 <a
-                  key={idx}
                   href={item.href}
                   target="_blank"
                   rel="noopener noreferrer"
