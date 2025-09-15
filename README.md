@@ -1,36 +1,131 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# OWASP VIT Bhopal University Student Chapter Website
+
+Official website for the OWASP VIT Bhopal University Student Chapter.
+
+## About
+
+The OWASP VIT Bhopal University Student Chapter is a student-led organization dedicated to promoting web application security awareness and education. Our mission is to empower students with the knowledge and skills needed to build secure applications and protect against cyber threats.
+
+This chapter is part of the [OWASP Foundation](https://owasp.org/), a nonprofit foundation that works to improve the security of software through community-led open source software projects, worldwide chapters, and educational initiatives.
+
+## Features
+
+- **Modern Design**: Clean, responsive UI with gradient backgrounds and smooth animations
+- **Component-based Architecture**: Reusable React components for maintainability
+- **TypeScript**: Type-safe development for better code quality
+- **Tailwind CSS**: Utility-first CSS framework for rapid styling
+- **Icon Integration**: Tabler Icons for consistent iconography
+- **Interactive Elements**: Hover effects and collapsible accordions
+- **Dynamic Content**: Event management and achievement showcases
+
+## Tech Stack
+
+- **Framework**: Next.js 15 with App Router
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS
+- **Icons**: @tabler/icons-react
+- **Font**: Custom CSS variables for consistent typography
+
+## Project Structure
+
+```
+├── app/                    # Next.js app directory
+│   ├── layout.tsx         # Root layout
+│   ├── page.tsx          # Home page
+│   └── globals.css       # Global styles
+├── components/            # React components
+│   ├── navbar.tsx        # Navigation component
+│   ├── heroSection.tsx   # Hero section
+│   ├── eventSection.tsx  # Events display
+│   ├── achievement.tsx   # Achievements showcase
+│   ├── footer.tsx        # Footer with social links
+│   └── container.tsx     # Layout container
+├── Content/              # Data and content
+│   ├── Events.ts         # Events data
+│   ├── Achievements.ts   # Achievements data
+│   └── LayoutElements.ts # Navigation and social links
+└── public/              # Static assets
+```
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
 
+- Node.js 18+ 
+- npm or yarn
+
+### Installation
+
+1. Clone the repository:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/Saurabh-2607/owasp-vitbhopal-website.git
+cd owasp-vitbhopal-website
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Install dependencies:
+```bash
+npm install
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. Run the development server:
+```bash
+npm run dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+4. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-## Learn More
+## Available Scripts
 
-To learn more about Next.js, take a look at the following resources:
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run start` - Start production server
+- `npm run lint` - Run ESLint
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Components Overview
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### HeroSection
+Landing section with gradient background and chapter introduction.
 
-## Deploy on Vercel
+### EventSection
+Displays upcoming events with collapsible past events using hover interactions.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Achievement
+Horizontal scrollable showcase of chapter achievements with consistent card styling.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Footer
+Complete footer with navigation links, social media icons, contact information, and newsletter subscription.
+
+## Content Management
+
+Content is managed through TypeScript files in the `Content/` directory:
+
+- **Events.ts**: Upcoming and past events
+- **Achievements.ts**: Chapter achievements and awards
+- **LayoutElements.ts**: Navigation items and social media links
+
+## Styling
+
+The project uses Tailwind CSS with custom CSS variables for theming:
+
+- `--text-colour`: Primary text color
+- `--muted-text`: Secondary text color
+- `--border`: Border color for components
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch: `git checkout -b feature/your-feature`
+3. Commit changes: `git commit -m 'Add your feature'`
+4. Push to branch: `git push origin feature/your-feature`
+5. Open a Pull Request
+
+## Contact
+
+- **Email**: OWASP@gmail.com
+- **Phone**: +91 8223091234
+- **Instagram**: [@owaspvitbhopal](https://www.instagram.com/owaspvitbhopal/)
+- **LinkedIn**: [OWASP VIT Bhopal](https://www.linkedin.com/company/owasp-vit-bhopal/)
+
+## License
+
+This project is open source and available under the [MIT License](LICENSE).
