@@ -9,7 +9,8 @@ interface AccordionProps {
   imageSrc?: string;
   description: string;
   open: boolean;
-  onClick: () => void;
+  onHover: () => void;
+  onLeave: () => void;
 }
 
 const EventCollapsible: React.FC<AccordionProps> = ({
@@ -17,35 +18,23 @@ const EventCollapsible: React.FC<AccordionProps> = ({
   imageSrc,
   description,
   open,
-  onClick,
+  onHover,
+  onLeave,
 }) => {
   return (
-    <div className="w-full rounded-2xl border-2 border-[var(--border)] p-6 mt-8">
-      <button
-        className="w-full flex justify-between items-center text-lg font-medium text-white"
-        onClick={onClick}
+    <div
+      className="w-full rounded-2xl border-2 border-[var(--border)] p-6 mt-8"
+      onMouseEnter={onHover}
+      onMouseLeave={onLeave}
+    >
+      <div
+        className="w-full flex justify-between items-center text-lg font-medium text-white cursor-pointer"
         aria-expanded={open}
       >
         <span className={`text-2xl ${open ? "font-bold" : "font-light"}`}>
           {title}
         </span>
-        <svg
-          className={`w-6 h-6 text-white transform transition-transform duration-300 ${
-            open ? "rotate-180" : "rotate-0"
-          }`}
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M19 9l-7 7-7-7"
-          />
-        </svg>
-      </button>
+      </div>
       {open && (
         <div className="flex gap-6 mt-4 items-start">
           {imageSrc && (
@@ -150,7 +139,7 @@ const UpcomingEvent: React.FC<UpcomingEventProps> = ({ events }) => {
 };
 
 const EventSection = () => {
-  const [openIndex, setOpenIndex] = useState<number>(0);
+  const [openIndex, setOpenIndex] = useState<number>(1);
   return (
     <Container>
       <div className="w-full gap-20 flex justify-between items-start mt-10">
@@ -161,7 +150,7 @@ const EventSection = () => {
             Over the years, we’ve transformed the face of cybersecurity, thereby
             achieving a variety of undisputed accomplishments.
           </div>
-          <UpcomingEvent events={upCommingEvents} />
+          {/* <UpcomingEvent events={upCommingEvents} /> */}
         </div>
         <div className="flex flex-col justify-between w-1/2 h-full">
           {pastEvents.map((event, idx) => (
@@ -171,7 +160,8 @@ const EventSection = () => {
               imageSrc={event.imgUrl}
               description={event.description}
               open={openIndex === idx}
-              onClick={() => setOpenIndex(openIndex === idx ? -1 : idx)}
+              onHover={() => setOpenIndex(idx)}
+              onLeave={() => {}}
             />
           ))}
         </div>
