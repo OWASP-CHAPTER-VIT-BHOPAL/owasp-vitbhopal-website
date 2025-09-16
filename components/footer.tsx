@@ -1,6 +1,10 @@
 import React from "react";
 import { Container } from "./container";
-import { footerItems, extraFooterItems, socialMediaLinks } from "@/Content/LayoutElements";
+import {
+  footerItems,
+  extraFooterItems,
+  socialMediaLinks,
+} from "@/Content/LayoutElements";
 import * as Icons from "@tabler/icons-react";
 
 type IconComponent = React.ComponentType<{ size?: number }>;
@@ -36,28 +40,41 @@ const Footer = () => {
           </div>
           <div className="flex gap-3 items-center mt-2">
             {socialMediaLinks.map((item, idx) => {
-              const Icon = item.icon && (Icons as unknown as Record<string, IconComponent>)[item.icon] ? (Icons as unknown as Record<string, IconComponent>)[item.icon] : null;
+              const Icon =
+                item.icon &&
+                (Icons as unknown as Record<string, IconComponent>)[item.icon]
+                  ? (Icons as unknown as Record<string, IconComponent>)[
+                      item.icon
+                    ]
+                  : null;
               return (
-                <div key={idx} className="p-2 rounded-full bg-black transition-colors duration-200">
-                <a
-                  href={item.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-[#999]"
-                  aria-label={item.name}
+                <div
+                  key={idx}
+                  className="p-2 rounded-full bg-black transition-colors duration-200"
                 >
-                  {Icon ? <Icon size={24} /> : null}
-                </a>
+                  <a
+                    href={item.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[#999]"
+                    aria-label={item.name}
+                  >
+                    {Icon ? <Icon size={24} /> : null}
+                  </a>
                 </div>
               );
             })}
           </div>
         </div>
-        
+
         <div className="flex justify-between items-center mt-15 w-full">
           <div className="flex flex-col gap-2">
-            <button className="bg-black text-white px-4 py-1 rounded-lg text-lg font-medium w-fit mb-2">Contact us</button>
-            <div className="text-base text-black/80">Email: OWASP@gamil.com</div>
+            <button className="bg-black text-white px-4 py-1 rounded-lg text-lg font-medium w-fit mb-2">
+              Contact us
+            </button>
+            <div className="text-base text-black/80">
+              Email: OWASP@gamil.com
+            </div>
             <div className="text-base text-black/80">Phone: +91 8223091234</div>
           </div>
           <form className="flex gap-4 items-center">
@@ -75,8 +92,12 @@ const Footer = () => {
           </form>
         </div>
         <div className="border-t border-black/30 mt-auto pt-2 flex items-center justify-between text-black/80 text-base gap-6">
-          <div className="mt-10">© 2025 OWASP All Rights Reserved </div>
-          <a href="/privacy-policy" className="hover:underline ml-4">Privacy Policy</a>
+          <div className="mt-10">
+            © {new Date().getFullYear()} OWASP All Rights Reserved
+          </div>
+          <a href="/privacy-policy" className="hover:underline ml-4">
+            Privacy Policy
+          </a>
         </div>
       </div>
     </Container>
