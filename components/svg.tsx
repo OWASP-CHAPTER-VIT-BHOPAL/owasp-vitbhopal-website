@@ -85,6 +85,87 @@ export const HeroSVG: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
   </svg>
 );
 
+export const EventcardSVG: React.FC<React.SVGProps<SVGSVGElement>> = (
+  props
+) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="484"
+    height="146"
+    viewBox="0 0 484 146"
+    fill="none"
+  >
+    <foreignObject x="-30" y="-30" width="543.5" height="205.5"></foreignObject>
+    <g filter="url(#filter0_n_403_1133)" data-figma-bg-blur-radius="30">
+      <path
+        d="M476.689 3.05642L478.575 4.49815C481.049 6.39017 482.5 9.32703 482.5 12.4417V114.705C482.5 118.552 480.293 122.058 476.824 123.722L435.55 143.517C434.201 144.164 432.723 144.5 431.226 144.5H31.1727C28.8016 144.5 26.5078 143.658 24.7003 142.123L4.52768 124.995C2.28989 123.095 1 120.308 1 117.372V11C1 5.47715 5.47714 1 11 1H470.615C472.81 1 474.945 1.72265 476.689 3.05642Z"
+        fill="#6C6C6C"
+        fill-opacity="0.2"
+      />
+      <path
+        d="M476.689 3.05642L478.575 4.49815C481.049 6.39017 482.5 9.32703 482.5 12.4417V114.705C482.5 118.552 480.293 122.058 476.824 123.722L435.55 143.517C434.201 144.164 432.723 144.5 431.226 144.5H31.1727C28.8016 144.5 26.5078 143.658 24.7003 142.123L4.52768 124.995C2.28989 123.095 1 120.308 1 117.372V11C1 5.47715 5.47714 1 11 1H470.615C472.81 1 474.945 1.72265 476.689 3.05642Z"
+        stroke="white"
+        stroke-opacity="0.5"
+        stroke-width="2"
+      />
+    </g>
+    <defs>
+      <filter
+        id="filter0_n_403_1133"
+        x="-30"
+        y="-30"
+        width="543.5"
+        height="205.5"
+        filterUnits="userSpaceOnUse"
+        color-interpolation-filters="sRGB"
+      >
+        <feFlood flood-opacity="0" result="BackgroundImageFix" />
+        <feBlend
+          mode="normal"
+          in="SourceGraphic"
+          in2="BackgroundImageFix"
+          result="shape"
+        />
+        <feTurbulence
+          type="fractalNoise"
+          baseFrequency="0.66666668653488159 0.66666668653488159"
+          stitchTiles="stitch"
+          numOctaves="3"
+          result="noise"
+          seed="5698"
+        />
+        <feColorMatrix in="noise" type="luminanceToAlpha" result="alphaNoise" />
+        <feComponentTransfer in="alphaNoise" result="coloredNoise1">
+          <feFuncA
+            type="discrete"
+            tableValues="1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 "
+          />
+        </feComponentTransfer>
+        <feComposite
+          operator="in"
+          in2="shape"
+          in="coloredNoise1"
+          result="noise1Clipped"
+        />
+        <feFlood flood-color="rgba(0, 0, 0, 0.25)" result="color1Flood" />
+        <feComposite
+          operator="in"
+          in2="noise1Clipped"
+          in="color1Flood"
+          result="color1"
+        />
+        <feMerge result="effect1_noise_403_1133">
+          <feMergeNode in="shape" />
+          <feMergeNode in="color1" />
+        </feMerge>
+      </filter>
+      <clipPath id="bgblur_0_403_1133_clip_path" transform="translate(30 30)">
+        <path d="M476.689 3.05642L478.575 4.49815C481.049 6.39017 482.5 9.32703 482.5 12.4417V114.705C482.5 118.552 480.293 122.058 476.824 123.722L435.55 143.517C434.201 144.164 432.723 144.5 431.226 144.5H31.1727C28.8016 144.5 26.5078 143.658 24.7003 142.123L4.52768 124.995C2.28989 123.095 1 120.308 1 117.372V11C1 5.47715 5.47714 1 11 1H470.615C472.81 1 474.945 1.72265 476.689 3.05642Z" />
+      </clipPath>
+    </defs>
+  </svg>
+);
+
 export const HeroDashSVG: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
   <svg
     width="142"

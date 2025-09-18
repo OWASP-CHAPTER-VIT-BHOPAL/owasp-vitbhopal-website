@@ -23,7 +23,7 @@ const HeroSection = () => {
             </div>
           </div>
         </div>
-        <div className="relative z-10">
+        <div className=" relative z-10">
           <HeroSVG />
         </div>
       </div>
