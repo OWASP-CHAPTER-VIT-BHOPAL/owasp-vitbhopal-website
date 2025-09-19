@@ -75,7 +75,7 @@ const Footer = () => {
             <div className="text-base text-black/80">
               Email: OWASP@gamil.com
             </div>
-            <div className="text-base text-black/80">Phone: +91 8223091234</div>
+            <div className="text-base text-black/80">Phone: +91 0000000000</div>
           </div>
           <form className="flex gap-4 items-center">
             <input
