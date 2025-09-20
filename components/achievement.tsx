@@ -12,7 +12,7 @@ const Achievement = () => {
         </h1>
         <div className="w-full h-[2px] bg-white/12" />
         <div className="text-sm md:text-base font-normal text-[var(--muted-text)]">
-          Over the years we've transformed the face of cybersecurity, therby
+          Over the years we&apos;ve transformed the face of cybersecurity, therby
           therefore realise regardless thereafter unrestored underestimated
           variety of various undisputed achievments
         </div>
