@@ -1,4 +1,5 @@
 import React from 'react'
+import Image from 'next/image'
 import AchievementCard from '@/components/achievementCard'
 import { Container } from '@/components/container'
 
@@ -13,7 +14,7 @@ const page = () => {
                         Achievements
                     </h2>
                     <p className="text-gray-400 mt-4 max-w-lg">
-                        Over the years we've transformed the face of cybersecurity, thereby therefore
+                        Over the years we&apos;ve transformed the face of cybersecurity, thereby therefore
                         realise regardless thereafter unrestored underestimated variety of various
                         undisputed achievements.
                     </p>
@@ -22,9 +23,11 @@ const page = () => {
                 <div className="dotted-rect rotate-90" />
                 <div className="flex-1 flex justify-center relative z-10">
                     <div className="dotted-rect" />
-                    <img
+                    <Image
                         src="/testimg1.png"
                         alt="Achievements Graphic"
+                        width={288}
+                        height={288}
                         className="w-72 h-72 object-contain opacity-90"
                     />
                 </div>
@@ -42,7 +45,7 @@ const page = () => {
 
                 {/* Grey paragraph under heading */}
                 <p className="text-gray-400 mt-4">
-                    Over the years we've transformed the face of cybersecurity, thereby therefore
+                    Over the years we&apos;ve transformed the face of cybersecurity, thereby therefore
                     realise regardless thereafter unrestored underestimated variety of various
                     undisputed achievements.
                 </p>
