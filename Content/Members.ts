@@ -18,7 +18,7 @@ const boardMembers = [
         href: "https://www.linkedin.com/in/amar-saroha/"
     },
     {
-        name: "Ashish ",
+        name: "Ashish Raj",
         position: "Chief of Staff",
         image: "/members/ashish.png",
         href: "mailto:amarsaroha2022@vitbhopal.ac.in"
@@ -189,7 +189,7 @@ const eventTeam = [
 const financeTeam = [
     {
         name: "Ishaani Prashant",
-        image: "/members/ishaani.png",
+        image: "/members/ishani.png",
         href: "https://www.linkedin.com/in/ishaani-prashant"
     },
     {

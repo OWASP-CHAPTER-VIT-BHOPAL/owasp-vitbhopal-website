@@ -20,11 +20,10 @@ const MemberCard: React.FC<MemberCardProps> = ({ image, name, position, alt, hre
 
     return (
         <Link href={href} target="_blank" rel="owasp Vit Bhopal">
-            <div className='md:w-63 md:h-74 w-53 h-63 border rounded-2xl border-[var(--border)] relative overflow-hidden group cursor-pointer'>
+            <div className='md:w-63 md:h-74 w-45 h-60 border rounded-2xl border-[var(--border)] relative overflow-hidden group cursor-pointer'>
                 {/* Background Image */}
                 <Image
                     src={imageSrc}
-
                     width={252}
                     height={296}
                     alt={alt || name}
@@ -32,10 +31,10 @@ const MemberCard: React.FC<MemberCardProps> = ({ image, name, position, alt, hre
                     onError={handleImageError}
                 />
 
-                <div className="absolute inset-0 bg-gradient-to-t from-black via-85% via-black/20 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black via-50% via-transparent to-transparent" />
                 {/* Content */}
                 <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
-                    <div className="flex items-end justify-between">
+                    <div className="flex items-center justify-between">
                         <div>
                             <h3 className="md:text-lg text-md leading-4 font-semibold">{name}</h3>
                             {position && (
