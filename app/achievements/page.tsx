@@ -1,72 +1,44 @@
-import React from 'react'
-import Image from 'next/image'
-import AchievementCard from '@/components/achievementCard'
-import { Container } from '@/components/container'
+import { Container } from "@/components/container";
+import AchievementCard from "@/components/achievementCard";
+import { achivementsContent } from "@/Content/Achievements";
+import { HeroDashSVG } from "@/components/svg";
 
-const page = () => {
-    return (
-        <>
-        <Container>
-            <section className="w-full mx-auto px-4 py-20 flex flex-col md:flex-row items-center gap-10">
-                {/* Left text */}
-                <div className="flex-1">
-                    <h2 className="text-5xl font-bold mb-2 border-b-2 border-dashed border-gray-500 inline-block pb-2">
-                        Achievements
-                    </h2>
-                    <p className="text-gray-400 mt-4 max-w-lg">
-                        Over the years we&apos;ve transformed the face of cybersecurity, thereby therefore
-                        realise regardless thereafter unrestored underestimated variety of various
-                        undisputed achievements.
-                    </p>
-                </div>
-                {/* Right Image */}
-                <div className="dotted-rect rotate-90" />
-                <div className="flex-1 flex justify-center relative z-10">
-                    <div className="dotted-rect" />
-                    <Image
-                        src="/testimg1.png"
-                        alt="Achievements Graphic"
-                        width={288}
-                        height={288}
-                        className="w-72 h-72 object-contain opacity-90"
-                    />
-                </div>
-            </section>
-
-            {/* Content */}
-            <section className="px-4 pb-20">
-                {/* Title with dropdown */}
-                <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 border-b border-dashed border-gray-600 pb-4">
-                    <h1 className="text-4xl font-bold">Our Achievements</h1>
-                    <select className="bg-[#1a1a1d] border border-gray-600 rounded-lg px-4 py-2 text-gray-300 text-sm">
-                        <option>Select</option>
-                    </select>
-                </div>
-
-                {/* Grey paragraph under heading */}
-                <p className="text-gray-400 mt-4">
-                    Over the years we&apos;ve transformed the face of cybersecurity, thereby therefore
-                    realise regardless thereafter unrestored underestimated variety of various
-                    undisputed achievements.
-                </p>
-
-                {/* Cards */}
-                <div className="mt-8 flex flex-col gap-8">
-                    <AchievementCard
-                        image="/testimg1.png"
-                        title="INFOSEC Awards"
-                        gradientClass="bg-gradient-to-br from-orange-500 to-transparent"
-                    />
-                    <AchievementCard
-                        image="/testimg1.png"
-                        title="INFOSEC Awards"
-                        gradientClass="bg-gradient-to-br from-blue-500 to-cyan-400"
-                    />
-                </div>
-            </section>
-            </Container>
-        </>
-    )
+export default function Achievements() {
+  return (
+    <Container>
+      <section className="flex flex-col lg:flex-row justify-between items-center bg-white pt-20 pb-20">
+        <div className="flex flex-col justify-start items-start">
+          <h1 className="text-4xl xs:text-5xl sm:text-6xl md:text-7xl lg:text-8xl 2xl:text-9xl font-extrabold">
+            <span className="text-orange-500">OUR</span>
+            <br />
+            <span className="text-gray-950">ACHIEVEMENTS</span>
+          </h1>
+          <div className="pt-10 w-full">
+            <p className="text-lg xs:text-xl sm:text-2xl font-semibold text-gray-700 max-w-lg leading-relaxed">
+              Celebrating the milestones and accomplishments that define our journey and success in cybersecurity education and community building.
+            </p>
+          </div>
+        </div>
+        <div className="flex-shrink-0 mr-8 mt-12 md:mt-0">
+          <HeroDashSVG className="w-full h-auto" />
+        </div>
+      </section>
+      
+      <section className="w-full py-20">
+        <div className="w-full max-w-6xl mx-auto px-4">
+          <div className="flex flex-col gap-8">
+            {achivementsContent.map((achievement, index) => (
+              <AchievementCard
+                key={index}
+                title={achievement.title}
+                description={achievement.description}
+                image={achievement.imgUrl}
+                gradientClass={index % 2 === 0 ? "bg-gradient-to-br from-orange-500 to-transparent" : "bg-gradient-to-br from-blue-500 to-cyan-400"}
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+    </Container>
+  );
 }
-
-export default page
