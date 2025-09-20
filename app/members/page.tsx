@@ -9,7 +9,7 @@ const page = () => {
       <div className='flex w-full items-center justify-between'>
         <div className='text-left md:w-[50%] w-full'>
           <div className='w-fit'>
-            <h1 className='text-7xl font-medium'>Members</h1>
+            <h1 className='md:text-7xl text-5xl font-medium'>Members</h1>
           </div>
           <div className='text-left mt-4 text-[var(--muted-text)] max-w-lg'>
             <div className='w-full border-2 my-4 border-dashed border-white/12' />
