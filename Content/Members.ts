@@ -3,7 +3,7 @@ const boardMembers = [
         name: "Ayush Juneja",
         position: "Chapter Leader",
         image: "/members/ayush.png",
-        href: "https://www.hrefedin.com/in/ayushjuneja18"
+        href: "https://www.linkedin.com/in/ayushjuneja18"
     },
     {
         name: "Sanidhya Soni",
@@ -15,7 +15,7 @@ const boardMembers = [
         name: "Amar Saroha",
         position: "Vice President",
         image: "/members/amar.png",
-        href: "https://www.hrefedin.com/in/amar-saroha/"
+        href: "https://www.linkedin.com/in/amar-saroha/"
     },
     {
         name: "Ashish ",
@@ -33,7 +33,7 @@ const boardMembers = [
         name: "Somnath",
         position: "Secretary",
         image: "/members/somnath.png",
-        href: "https://www.hrefedin.com/in/das-somnath?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
+        href: "https://www.linkedin.com/in/das-somnath?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
     },
 ]
 
@@ -66,7 +66,7 @@ const designTeam = [
     {
         name: "Tamanna Singh Chandel",
         image: "/members/tamanna.png",
-        href: "https://www.hrefedin.com/in/tamanna-singh-chandel-1a107026a/"
+        href: "https://www.linkedin.com/in/tamanna-singh-chandel-1a107026a/"
     },
     {
         name: "Sohom Bose",
@@ -79,27 +79,27 @@ const technicalTeam = [
     {
         name: "Utkarsh Srivastava",
         image: "/members/utkarsh.png",
-        href: "https://hrefedin.com/in/0xutkarsh"
+        href: "https://linkedin.com/in/0xutkarsh"
     },
     {
         name: "Snehil Shourya",
         image: "/members/snehil.png",
-        href: "https://www.hrefedin.com/in/snehilshourya101"
+        href: "https://www.linkedin.com/in/snehilshourya101"
     },
     {
         name: "Kunal Singh",
         image: "/members/kunal.png",
-        href: "https://www.hrefedin.com/in/kunalsingh1225"
+        href: "https://www.linkedin.com/in/kunalsingh1225"
     },
     {
         name: "Samiksha Vijayvargiya",
         image: "/members/samiksha.png",
-        href: "https://www.hrefedin.com/in/samiksha-vijayvargiya-7b84582b4?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
+        href: "https://www.linkedin.com/in/samiksha-vijayvargiya-7b84582b4?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
     },
     {
         name: "Jayanth",
         image: "/members/jayanth.png",
-        href: "https://www.hrefedin.com/in/jayanth-renganathan-a08288280/"
+        href: "https://www.linkedin.com/in/jayanth-renganathan-a08288280/"
     },
     {
         name: "Nishant Choudhary",
@@ -109,17 +109,17 @@ const technicalTeam = [
     {
         name: "Ankit Singh",
         image: "/members/ankit.png",
-        href: "https://www.hrefedin.com/in/ankit-s01/"
+        href: "https://www.linkedin.com/in/ankit-s01/"
     },
     {
         name: "Archit Khare",
         image: "/members/archit.png",
-        href: "https://www.hrefedin.com/in/archit-khare"
+        href: "https://www.linkedin.com/in/archit-khare"
     },
     {
         name: "Akriti Sharma",
         image: "/members/akriti.png",
-        href: "https://www.hrefedin.com/in/akriti-sharma-14259b284/"
+        href: "https://www.linkedin.com/in/akriti-sharma-14259b284/"
     }
 ]
 
@@ -132,17 +132,17 @@ const eventTeam = [
     {
         name: "Shreya Tiwari",
         image: "/members/shreya.png",
-        href: "https://www.hrefedin.com/in/shreya-tiwari-603160362?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
+        href: "https://www.linkedin.com/in/shreya-tiwari-603160362?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
     },
     {
         name: "Pakhi Shukla",
         image: "/members/pakhi.png",
-        href: "https://www.hrefedin.com/in/pakhi-shukla-6773a428b?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
+        href: "https://www.linkedin.com/in/pakhi-shukla-6773a428b?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
     },
     {
         name: "Ishmeet Kaur",
         image: "/members/ishmeet.png",
-        href: "https://www.hrefedin.com/in/ishmeet-kaur-ba2446287?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
+        href: "https://www.linkedin.com/in/ishmeet-kaur-ba2446287?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
     },
     {
         name: "Millan Aggarwal",
@@ -152,7 +152,7 @@ const eventTeam = [
     {
         name: "Jhanvi Jyant",
         image: "/members/jhanvi.png",
-        href: "https://www.hrefedin.com/in/jhanvi-jyant-26934b291"
+        href: "https://www.linkedin.com/in/jhanvi-jyant-26934b291"
     },
     {
         name: "Akshjeet Gakrey",
@@ -167,7 +167,7 @@ const eventTeam = [
     {
         name: "Nimesh Agarwal",
         image: "/members/nimesh.png",
-        href: "https://www.hrefedin.com/in/itsnimeshagarwal/"
+        href: "https://www.linkedin.com/in/itsnimeshagarwal/"
     },
     {
         name: "Deepayan Dey",
@@ -190,7 +190,7 @@ const financeTeam = [
     {
         name: "Ishaani Prashant",
         image: "/members/ishaani.png",
-        href: "https://www.hrefedin.com/in/ishaani-prashant"
+        href: "https://www.linkedin.com/in/ishaani-prashant"
     },
     {
         name: "Modansh Rao",
@@ -200,17 +200,17 @@ const financeTeam = [
     {
         name: "Jyoti Singh Rajput",
         image: "/members/jyoti.png",
-        href: "https://www.hrefedin.com/in/jyoti-singh-rajput-81b333301?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
+        href: "https://www.linkedin.com/in/jyoti-singh-rajput-81b333301?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
     },
     {
         name: "Atharv Santosh Shete",
         image: "/members/atharv.png",
-        href: "https://www.hrefedin.com/in/atharvshete515"
+        href: "https://www.linkedin.com/in/atharvshete515"
     },
     {
         name: "Siya Sanjit Sawant Dessai",
         image: "/members/siya.png",
-        href: "https://www.hrefedin.com/in/siya-dessai-89b616325?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
+        href: "https://www.linkedin.com/in/siya-dessai-89b616325?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
     },
     {
         name: "Trisha Kapoor",
@@ -223,7 +223,7 @@ const prTeam = [
     {
         name: "M K Nandhini",
         image: "/members/nandhini.png",
-        href: "https://www.hrefedin.com/in/m-k-nandhini-721699232"
+        href: "https://www.linkedin.com/in/m-k-nandhini-721699232"
     }
 ]
 
@@ -254,17 +254,17 @@ const ecaMembers = [
     {
         name: "Aniket Bose",
         image: "/members/aniket.png",
-        href: "https://www.hrefedin.com/in/aniket-bose-44b5a82a4?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
+        href: "https://www.linkedin.com/in/aniket-bose-44b5a82a4?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
     },
     {
         name: "Tanmay Bhatnagar",
         image: "/members/tanmay.png",
-        href: "https://www.hrefedin.com/in/tanmay-bhatnagar-vit/"
+        href: "https://www.linkedin.com/in/tanmay-bhatnagar-vit/"
     },
     {
         name: "Jay Pratap Singh Rajput",
         image: "/members/jay.png",
-        href: "https://www.hrefedin.com/in/jayrajput02?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
+        href: "https://www.linkedin.com/in/jayrajput02?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
     },
     {
         name: "Deepayan Dey",
@@ -277,7 +277,7 @@ const alumni = [
     {
         name: "Saurabh Jain",
         image: "/members/saurabh_alumni.png",
-        href: "https://www.hrefedin.com/in/saurabh-jain-224/"
+        href: "https://www.linkedin.com/in/saurabh-jain-224/"
     }
 ]
 
