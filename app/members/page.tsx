@@ -5,7 +5,7 @@ import React from 'react'
 
 const page = () => {
   return (
-    <Container className='min-h-screen'>
+    <Container className='min-h-screen overflow-x-hidden px-4 md:px-6 lg:px-8'>
       <div className='flex w-full items-center justify-between'>
         <div className='text-left md:w-[50%] w-full'>
           <div className='w-fit'>

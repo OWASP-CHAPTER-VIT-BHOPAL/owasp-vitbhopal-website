@@ -11,7 +11,6 @@ const footerItems = [
   { name: "Members", href: "/members" },
   { name: "Achievements", href: "/achievements" },
   { name: "Events", href: "/events" },
-  { name: "Contact Us", href: "/contact" },
 ];
 
 const extraFooterItems = [

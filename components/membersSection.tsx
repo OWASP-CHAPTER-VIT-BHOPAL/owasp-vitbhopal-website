@@ -16,21 +16,23 @@ interface MembersSectionProps {
 
 const MembersSection: React.FC<MembersSectionProps> = ({ title, members }) => {
     return (
-        <div className='my-16 w-screen'>
+        <div className='my-16 w-full max-w-full'>
             <h2 className='md:text-4xl text-3xl font-medium'>{title}</h2>
             <div className='w-full border-2 my-4 border-dashed border-white/12' />
             
-            <div className="grid grid-cols-2 md:grid-cols-5 gap-x-4 gap-y-7 mt-8 ml-4 md:ml-12">
-                {members.map((member, index) => (
-                    <MemberCard
-                        key={index}
-                        image={member.image}
-                        name={member.name}
-                        position={member.position}
-                        alt={member.alt}
-                        href={member.href}
-                    />
-                ))}
+            <div className="w-full overflow-hidden">
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-x-3 gap-y-5 mt-8 justify-items-center mx-auto max-w-full">
+                    {members.map((member, index) => (
+                        <MemberCard
+                            key={index}
+                            image={member.image}
+                            name={member.name}
+                            position={member.position}
+                            alt={member.alt}
+                            href={member.href}
+                        />
+                    ))}
+                </div>
             </div>
         </div>
     )
