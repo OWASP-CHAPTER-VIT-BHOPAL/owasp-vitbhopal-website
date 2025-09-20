@@ -1,22 +1,54 @@
 import { Container } from '@/components/container'
 import MembersSection from '@/components/membersSection'
 import { boardMembers, designTeam, technicalTeam, eventTeam, financeTeam, prTeam, contentTeam, ecaMembers} from '@/Content/Members'
+import { socialMediaLinks } from '@/Content/LayoutElements'
+import * as Icons from "@tabler/icons-react"
 import React from 'react'
+
+type IconComponent = React.ComponentType<{ size?: number }>;
 
 const page = () => {
   return (
     <Container className='min-h-screen overflow-x-hidden px-4 md:px-6 lg:px-8'>
-      <div className='flex w-full items-center justify-between'>
-        <div className='text-left md:w-[50%] w-full'>
+      <div className='flex flex-col lg:flex-row w-full items-start lg:items-center justify-between gap-8 lg:gap-0'>
+        <div className='text-left w-full lg:w-[50%]'>
           <div className='w-fit'>
-            <h1 className='md:text-7xl text-5xl font-medium'>Members</h1>
+            <h1 className='text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-medium'>Members</h1>
           </div>
           <div className='text-left mt-4 text-[var(--muted-text)] max-w-lg'>
             <div className='w-full border-2 my-4 border-dashed border-white/12' />
-            <p>Over the years we’ve transformed the face of cybersecurity, therby therefore realise regardless thereafter unrestored underestimated variety of various undisputed achievments </p>
+            <p className='text-sm md:text-base'>Over the years we've transformed the face of cybersecurity, therby therefore realise regardless thereafter unrestored underestimated variety of various undisputed achievments </p>
+            
+            {/* Social Media Icons */}
+            <div className="flex gap-3 items-center mt-6">
+              <span className="text-sm text-[var(--muted-text)] mr-2">Connect with us:</span>
+              {socialMediaLinks.map((item, idx) => {
+                const Icon =
+                  item.icon &&
+                  (Icons as unknown as Record<string, IconComponent>)[item.icon]
+                    ? (Icons as unknown as Record<string, IconComponent>)[item.icon]
+                    : null;
+                return (
+                  <div
+                    key={idx}
+                    className="p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors duration-200"
+                  >
+                    <a
+                      href={item.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-white hover:text-gray-300"
+                      aria-label={item.name}
+                    >
+                      {Icon ? <Icon size={20} /> : null}
+                    </a>
+                  </div>
+                );
+              })}
+            </div>
           </div>
         </div>
-        <div className='text-left w-[50%] md:block hidden'>
+        <div className='text-left w-full lg:w-[50%] hidden lg:block'>
           <svg xmlns="http://www.w3.org/2000/svg" width="full" height="full" viewBox="0 0 2584 1115" fill="none">
             <mask id="path-1-inside-1_403_778" fill="white">
               <path d="M0 0H124.8V560.725H351V752H0V0Z" />

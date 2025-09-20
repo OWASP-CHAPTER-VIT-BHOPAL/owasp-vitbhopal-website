@@ -4,20 +4,23 @@ import React from 'react'
 type ButtonProps = {
   children: React.ReactNode;
   href?: string;
+  onClick?: () => void;
 };
 
-export const Button = ({ children, href }: ButtonProps) => {
+export const Button = ({ children, href, onClick }: ButtonProps) => {
   const className = 'flex h-10 w-auto px-7 justify-center items-center rounded-full bg-white font-bold text-[var(--text-colour)] text-sm ';
+  
   if (href) {
     return (
-      <a href={href} className={className}>
+      <a href={href} className={className} onClick={onClick}>
         {children}
       </a>
     );
   }
+  
   return (
-    <div className={className}>
+    <button className={className} onClick={onClick}>
       {children}
-    </div>
+    </button>
   );
 }

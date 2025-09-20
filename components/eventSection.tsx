@@ -23,7 +23,7 @@ const EventCollapsible: React.FC<AccordionProps> = ({
 }) => {
   return (
     <div
-      className="w-full rounded-2xl border-2 border-[var(--border)] p-6 mt-8"
+      className="w-full rounded-2xl border-2 border-[var(--border)] p-4 md:p-6 mt-6 md:mt-8"
       onMouseEnter={onHover}
       onMouseLeave={onLeave}
     >
@@ -31,22 +31,22 @@ const EventCollapsible: React.FC<AccordionProps> = ({
         className="w-full flex justify-between items-center text-lg font-medium text-white cursor-pointer"
         aria-expanded={open}
       >
-        <span className={`text-2xl ${open ? "font-bold" : "font-light"}`}>
+        <span className={`text-lg md:text-2xl ${open ? "font-bold" : "font-light"}`}>
           {title}
         </span>
       </div>
       {open && (
-        <div className="flex gap-6 mt-4 items-start">
+        <div className="flex flex-col md:flex-row gap-4 md:gap-6 mt-4 items-start">
           {imageSrc && (
             <Image
               src={imageSrc}
               width={160}
               height={128}
               alt={title}
-              className="w-40 h-32 object-cover rounded-xl bg-[#111] aspect-square"
+              className="w-full md:w-40 h-32 md:h-32 object-cover rounded-xl bg-[#111] aspect-square"
             />
           )}
-          <p className="text-[var(--muted-text)] text-base leading-relaxed">
+          <p className="text-[var(--muted-text)] text-sm md:text-base leading-relaxed">
             {description}
           </p>
         </div>
@@ -141,18 +141,18 @@ const EventCollapsible: React.FC<AccordionProps> = ({
 const EventSection = () => {
   const [openIndex, setOpenIndex] = useState<number>(1);
   return (
-    <Container>
-      <div className="w-full gap-20 flex justify-between items-start mt-10">
-        <div className="flex flex-col gap-4 w-1/2 h-full">
-          <div className="text-7xl font-medium">Our Events</div>
-          <div className="w-full h-[2] bg-white/12" />
-          <div className="text-sm font-normal text-[var(--muted-text)]">
-            Over the years, we’ve transformed the face of cybersecurity, thereby
+    <Container className="px-4 md:px-6 lg:px-8">
+      <div className="w-full flex flex-col lg:flex-row gap-8 lg:gap-20 justify-between items-start mt-6 md:mt-10">
+        <div className="flex flex-col gap-4 w-full lg:w-1/2 h-full">
+          <div className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-medium">Our Events</div>
+          <div className="w-full h-[2px] bg-white/12" />
+          <div className="text-sm md:text-base font-normal text-[var(--muted-text)]">
+            Over the years, we've transformed the face of cybersecurity, thereby
             achieving a variety of undisputed accomplishments.
           </div>
           {/* <UpcomingEvent events={upCommingEvents} /> */}
         </div>
-        <div className="flex flex-col justify-between w-1/2 h-full">
+        <div className="flex flex-col justify-between w-full lg:w-1/2 h-full">
           {pastEvents.map((event, idx) => (
             <EventCollapsible
               key={idx}
