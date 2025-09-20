@@ -189,7 +189,7 @@ const eventTeam = [
 const financeTeam = [
     {
         name: "Ishaani Prashant",
-        image: "/members/ishaani.png",
+        image: "/members/ishani.png",
         href: "https://www.linkedin.com/in/ishaani-prashant"
     },
     {
