@@ -55,17 +55,17 @@ const EventCollapsible: React.FC<AccordionProps> = ({
   );
 };
 
-interface UpcomingEventProps {
-  events: Array<{
-    title: string;
-    date: string;
-    description: string;
-    link?: string;
-    imgUrl?: string;
-    time?: string;
-    venue?: string;
-  }>;
-}
+// interface UpcomingEventProps {
+//   events: Array<{
+//     title: string;
+//     date: string;
+//     description: string;
+//     link?: string;
+//     imgUrl?: string;
+//     time?: string;
+//     venue?: string;
+//   }>;
+// }
 
 // const UpcomingEvent: React.FC<UpcomingEventProps> = ({ events }) => {
 //   return (

@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 
 interface AchievementCardProps {
   image: string;
@@ -19,8 +20,10 @@ export default function AchievementCard({ image, title, gradientClass }: Achieve
         className={`relative -mt-10 p-[2px] rounded-xl ${gradientClass} shrink-0`}
       >
         <div className="bg-[#1a1a1d] rounded-xl overflow-hidden">
-          <img
+          <Image
             src={image}
+            width={340}
+            height={200}
             alt={title}
             className="w-[340px] h-[200px] object-cover rounded-xl"
           />
@@ -31,12 +34,12 @@ export default function AchievementCard({ image, title, gradientClass }: Achieve
       <div className="flex-1 text-gray-400 text-sm leading-relaxed">
         <h3 className="text-gray-300 font-semibold mb-2">{title}</h3>
         <p>
-          Over the years we've transformed the face of cybersecurity, thereby
+          Over the years we&apos;ve transformed the face of cybersecurity, thereby
           therefore realise regardless thereafter unrestored underestimated
           variety of various undisputed achievements.
         </p>
         <p className="mt-3">
-          Over the years we've transformed the face of cybersecurity, thereby
+          Over the years we&apos;ve transformed the face of cybersecurity, thereby
           therefore realise regardless thereafter unrestored underestimated
           variety of various undisputed achievements.
         </p>
