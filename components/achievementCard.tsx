@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import Image from "next/image";
 
@@ -10,17 +11,14 @@ interface AchievementCardProps {
 
 export default function AchievementCard({ image, title, gradientClass, description }: AchievementCardProps) {
   return (
-    <div className="flex flex-col md:flex-row items-start gap-6 bg-[#1a1a1d] border-2 border-gray-700 rounded-2xl p-6 relative shadow-xl overflow-visible">
+    <div className="group flex flex-col md:flex-row items-start gap-6 bg-[#1a1a1d] border-2 border-gray-700 rounded-2xl p-6 relative shadow-xl overflow-visible">
       <div
-        className={`absolute top-0 right-0 w-40 h-40 ${gradientClass} blur-2xl opacity-40 rounded-tr-2xl`}
+        className={`absolute top-0 right-0 w-40 h-40 ${gradientClass} blur-2xl opacity-0 group-hover:opacity-40 transition-opacity duration-300 rounded-tr-2xl`}
       />
       <div
-        className={`absolute bottom-0 left-0 w-40 h-40 ${gradientClass} blur-2xl opacity-40 rounded-bl-2xl`}
-      />
-      <div
-        className={`relative -mt-12 p-1 rounded-xl ${gradientClass} shrink-0`}
+        className={`relative -mt-12 group-hover:-mt-10 p-1 rounded-xl ${gradientClass} shrink-0 group-hover:transition-transform group-hover:duration-300`}
       >
-        <div className="bg-[#1a1a1d] rounded-xl overflow-hidden">
+        <div className="bg-transparent group-hover:bg-white/10 rounded-xl overflow-hidden transition-colors duration-300">
           <Image
             src={image}
             width={340}
