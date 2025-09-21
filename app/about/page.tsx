@@ -2,6 +2,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 import { NextPage } from 'next';
 
+
 const Home: NextPage = () => {
   return (
     <>
@@ -13,25 +14,8 @@ const Home: NextPage = () => {
       </Head>
 
       <div className="min-h-screen bg-black text-white">
-        {/* Header */}
-        <header className="bg-black p-4">
-          <nav className="max-w-6xl mx-auto">
-            <div className="flex flex-col sm:flex-row justify-between items-center">
-              <Link href="/" className="text-2xl font-bold text-white mb-4 sm:mb-0">
-                bi0s
-              </Link>
-              <div className="flex flex-wrap justify-center sm:justify-end gap-x-4 sm:gap-x-6 gap-y-2">
-                <Link href="/" className="hover:text-gray-300 transition-colors">Home</Link>
-                <Link href="/about" className="hover:text-gray-300 transition-colors">About</Link>
-                <Link href="/members" className="hover:text-gray-300 transition-colors">Members</Link>
-                <Link href="/achievements" className="hover:text-gray-300 transition-colors">Achievements</Link>
-                <Link href="/blog" className="hover:text-gray-300 transition-colors">Blog</Link>
-                <span className="hover:text-gray-300 transition-colors cursor-pointer">⚙</span>
-              </div>
-            </div>
-          </nav>
-        </header>
-
+       
+           
         {/* Main Content */}
         <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           {/* Hero Section */}
@@ -231,20 +215,7 @@ const Home: NextPage = () => {
         </main>
 
         {/* Footer */}
-        <footer className="bg-black p-4 sm:p-6 mt-12 lg:mt-16">
-          <div className="max-w-6xl mx-auto flex flex-col sm:flex-row justify-between items-center">
-            <p className="text-gray-400 text-sm sm:text-base mb-4 sm:mb-0 text-center sm:text-left">
-              © Team bi0s 2007 - 2024. All rights reserved.
-            </p>
-            <div className="flex space-x-4">
-              <a href="#" className="text-red-500 hover:text-red-400 text-sm sm:text-base">Streaming</a>
-              <a href="#" className="text-gray-400 hover:text-white">✉</a>
-              <a href="#" className="text-gray-400 hover:text-white">🐦</a>
-              <a href="#" className="text-gray-400 hover:text-white">👤</a>
-              <a href="#" className="text-gray-400 hover:text-white">💼</a>
-            </div>
-          </div>
-        </footer>
+        
       </div>
     </>
   )
