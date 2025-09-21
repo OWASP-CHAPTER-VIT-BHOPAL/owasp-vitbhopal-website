@@ -70,7 +70,7 @@ const designTeam = [
     },
     {
         name: "Sohom Bose",
-        image: "/members/sohom.png",
+        image: "/members/soham.png",
         href: "mailto:sohom.24bcy10172@vitbhopal.ac.in"
     }
 ]

@@ -1,8 +1,6 @@
 import { Container } from '@/components/container'
 import MembersSection from '@/components/membersSection'
-import { boardMembers, designTeam, technicalTeam, eventTeam, financeTeam, prTeam, contentTeam, ecaMembers} from '@/Content/Members'
-import { socialMediaLinks } from '@/Content/LayoutElements'
-import * as Icons from "@tabler/icons-react"
+import { boardMembers, designTeam, technicalTeam, eventTeam, financeTeam, prTeam, contentTeam, ecaMembers } from '@/Content/Members'
 import React from 'react'
 
 type IconComponent = React.ComponentType<{ size?: number }>;
@@ -18,34 +16,6 @@ const page = () => {
           <div className='text-left mt-4 text-[var(--muted-text)] max-w-lg'>
             <div className='w-full border-2 my-4 border-dashed border-white/12' />
             <p className='text-sm md:text-base'>Over the years we&apos;ve transformed the face of cybersecurity, therby therefore realise regardless thereafter unrestored underestimated variety of various undisputed achievments </p>
-            
-            {/* Social Media Icons */}
-            <div className="flex gap-3 items-center mt-6">
-              <span className="text-sm text-[var(--muted-text)] mr-2">Connect with us:</span>
-              {socialMediaLinks.map((item, idx) => {
-                const Icon =
-                  item.icon &&
-                  (Icons as unknown as Record<string, IconComponent>)[item.icon]
-                    ? (Icons as unknown as Record<string, IconComponent>)[item.icon]
-                    : null;
-                return (
-                  <div
-                    key={idx}
-                    className="p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors duration-200"
-                  >
-                    <a
-                      href={item.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-white hover:text-gray-300"
-                      aria-label={item.name}
-                    >
-                      {Icon ? <Icon size={20} /> : null}
-                    </a>
-                  </div>
-                );
-              })}
-            </div>
           </div>
         </div>
         <div className='text-left w-full lg:w-[50%] hidden lg:block'>
@@ -67,14 +37,13 @@ const page = () => {
 
       <div>
         <MembersSection title="Board Members" members={boardMembers} />
-            <MembersSection title="Technical Team" members={technicalTeam} />
-            <MembersSection title="Design Team" members={designTeam} />
-            <MembersSection title="Content Team" members={contentTeam} />
-            <MembersSection title="Event Team" members={eventTeam} />
-            <MembersSection title="Finance Team" members={financeTeam} />
-            <MembersSection title="Pr & Outreach Team" members={prTeam} />
-            <MembersSection title="ECA Members" members={ecaMembers} />
-
+        <MembersSection title="Technical Team" members={technicalTeam} />
+        <MembersSection title="Design Team" members={designTeam} />
+        <MembersSection title="Content Team" members={contentTeam} />
+        <MembersSection title="Event Team" members={eventTeam} />
+        <MembersSection title="Finance Team" members={financeTeam} />
+        <MembersSection title="Pr & Outreach Team" members={prTeam} />
+        <MembersSection title="ECA Members" members={ecaMembers} />
       </div>
     </Container>
   )

@@ -23,34 +23,40 @@ const EventCollapsible: React.FC<AccordionProps> = ({
 }) => {
   return (
     <div
-      className="w-full rounded-2xl border-2 border-[var(--border)] p-4 md:p-6 mt-6 md:mt-8"
+      className="w-full rounded-2xl border-2 border-[var(--border)] p-4 md:p-6 mt-6 md:mt-8 transition-all duration-300 ease-in-out hover:border-white/20"
       onMouseEnter={onHover}
       onMouseLeave={onLeave}
     >
       <div
-        className="w-full flex justify-between items-center text-lg font-medium text-white cursor-pointer"
+        className="w-full h-full flex justify-between items-center text-lg font-medium text-white cursor-pointer"
         aria-expanded={open}
       >
-        <span className={`text-lg md:text-2xl ${open ? "font-bold" : "font-light"}`}>
+        <span className={`text-lg h-full md:text-2xl transition-all duration-300 ease-in-out ${open ? "font-bold" : "font-light"}`}>
           {title}
         </span>
       </div>
-      {open && (
-        <div className="flex flex-col md:flex-row gap-4 md:gap-6 mt-4 items-start">
-          {imageSrc && (
-            <Image
-              src={imageSrc}
-              width={160}
-              height={128}
-              alt={title}
-              className="w-full md:w-40 h-32 md:h-32 object-cover rounded-xl bg-[#111] aspect-square"
-            />
-          )}
-          <p className="text-[var(--muted-text)] text-sm md:text-base leading-relaxed">
-            {description}
-          </p>
+      <div>
+        <div className={`grid transition-all duration-500 ease-in-out ${
+          open ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'
+        }`}>
+          <div className="overflow-hidden">
+            <div className="flex flex-col mt-4 md:flex-row gap-4 md:gap-6 items-center">
+              {imageSrc && (
+                <Image
+                  src={imageSrc}
+                  width={160}
+                  height={128}
+                  alt={title}
+                  className="w-full md:w-40 h-32 md:h-32 object-cover rounded-xl bg-[#111] aspect-square transition-transform duration-300 ease-in-out hover:scale-105"
+                />
+              )}
+              <p className="text-[var(--muted-text)] text-sm md:text-base leading-relaxed">
+                {description}
+              </p>
+            </div>
+          </div>
         </div>
-      )}
+      </div>
     </div>
   );
 };
