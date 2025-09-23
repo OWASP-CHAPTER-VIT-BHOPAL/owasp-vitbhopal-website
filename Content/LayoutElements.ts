@@ -27,22 +27,22 @@ const socialMediaLinks = [
   },
   {
     name: "LinkedIn",
-    href: "https://www.linkedin.com/company/owasp-vit-bhopal/",
+    href: "https://www.linkedin.com/company/owasp-vit-bhopal-university/",
     icon: "IconBrandLinkedinFilled",
   },
   {
     name: "GitHub",
-    href: "https://github.com/owaspvitbhopal",
+    href: "https://github.com/OWASP-CHAPTER-VIT-BHOPAL",
     icon: "IconBrandGithubFilled",
   },
   {
     name: "Discord",
-    href: "https://discord.gg/owaspvitbhopal",
+    href: "https://discord.gg/wf355sQMnz",
     icon: "IconBrandDiscordFilled",
   },
   {
     name: "Twitter",
-    href: "https://twitter.com/owaspvitbhopal",
+    href: "https://x.com/OwaspVitBhopal",
     icon: "IconBrandXFilled",
   },
 ];

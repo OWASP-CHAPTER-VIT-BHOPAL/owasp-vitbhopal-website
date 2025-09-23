@@ -1,10 +1,93 @@
+"use client"
 import { Button } from '@/components/button';
 import { Container } from '@/components/container'
-import MembersSection from '@/components/membersSection'
-import { boardMembers, designTeam, technicalTeam, eventTeam, financeTeam, prTeam, contentTeam, ecaMembers } from '@/Content/Members'
-import React from 'react'
+import React, { useState } from 'react'
 
 type IconComponent = React.ComponentType<{ size?: number }>;
+
+const ContactForm = () => {
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
+  const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState("");
+  const [error, setError] = useState("");
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+    setSuccess("");
+    setError("");
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setLoading(true);
+    setSuccess("");
+    setError("");
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+      const data = await res.json();
+      if (data.success) {
+        setSuccess("Message sent successfully!");
+        setForm({ name: "", email: "", message: "" });
+      } else {
+        setError(data.error || "Failed to send message.");
+      }
+    } catch (err) {
+      setError("Failed to send message.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <form className='flex flex-col gap-y-4' onSubmit={handleSubmit}>
+      <input
+        className='border-2 border-[var(--border)] rounded-2xl p-4 text-white'
+        type="text"
+        name="name"
+        placeholder='Name'
+        value={form.name}
+        onChange={handleChange}
+        required
+      />
+      <input
+        className='border-2 border-[var(--border)] rounded-2xl p-4 text-white'
+        type="email"
+        name="email"
+        placeholder='Email'
+        value={form.email}
+        onChange={handleChange}
+        required
+      />
+      <textarea
+        className='border-2 border-[var(--border)] rounded-2xl p-4 text-white'
+        name="message"
+        placeholder='Message'
+        rows={6}
+        value={form.message}
+        onChange={handleChange}
+        required
+      ></textarea>
+      <Button>
+        {loading ? "Sending..." : "Send Message"}
+      </Button>
+      {success && (
+        <div className="text-green-500 text-sm mt-2">{success}</div>
+      )}
+      {error && (
+        <div className="text-red-500 text-sm mt-2">{error}</div>
+      )}
+    </form>
+  );
+};
 
 const page = () => {
   return (
@@ -12,8 +95,11 @@ const page = () => {
       <div className='flex flex-col lg:flex-row w-full items-start lg:items-center justify-between gap-8 lg:gap-0'>
         <div className='text-left w-full lg:w-[50%]'>
           <div className='w-fit'>
-            <h1 className='text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-medium'>Contact</h1>
+            <h1 className='text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-medium'>Members</h1>
+          </div>
+          <div className='text-left mt-4 text-[var(--muted-text)] max-w-lg'>
             <div className='w-full border-2 my-4 border-dashed border-white/12' />
+            <p className='text-sm md:text-base'>Over the years we&apos;ve transformed the face of cybersecurity, therby therefore realise regardless thereafter unrestored underestimated variety of various undisputed achievments </p>
           </div>
         </div>
         <div className='text-left w-full lg:w-[50%] hidden lg:block'>
@@ -37,9 +123,7 @@ const page = () => {
         <div className='w-1/3'>
           <div className='flex flex-col gap-4 font-bold mb-8 border-2 border-[var(--border)] p-4 rounded-2xl'>
             <div className='text-4xl font-semibold'>Get in Touch</div>
-            <div className='text-lg font-semibold text-[var(--muted)] leading-6'>Do you have any questions? or do you have any suggestions for us?</div>
-          </div>
-          <div className='flex flex-col h-full justify-start gap-y-4'>
+            <div className='text-lg font-medium text-[var(--muted)] leading-6'>Do you have any questions? or do you have any suggestions for us?</div>
             <div className='flex flex-start p-4 rounded-2xl items-center border-2 border-[var(--border)] gap-x-4'>
               <svg xmlns="http://www.w3.org/2000/svg" width="32" height="26" viewBox="0 0 32 26" fill="none">
                 <path d="M31.8337 5.93042V20.9167C31.8337 22.1283 31.3708 23.2941 30.5396 24.1756C29.7084 25.0571 28.5718 25.5877 27.3623 25.6588L27.0837 25.6667H4.91699C3.70541 25.6667 2.53959 25.2038 1.65808 24.3726C0.776565 23.5415 0.245989 22.4048 0.174909 21.1953L0.166992 20.9167V5.93042L15.1216 15.9007L15.3052 16.0052C15.5217 16.1109 15.7594 16.1659 16.0003 16.1659C16.2412 16.1659 16.479 16.1109 16.6954 16.0052L16.8791 15.9007L31.8337 5.93042Z" fill="white" />
@@ -67,15 +151,11 @@ const page = () => {
                 Mail
               </div>
             </div>
+
           </div>
         </div>
         <div className='w-2/3'>
-          <form className='flex flex-col gap-y-4'>
-            <input className='border-2 border-[var(--border)] rounded-md p-4 text-white' type="text" placeholder='Name' />
-            <input className='border-2 border-[var(--border)] rounded-md p-4 text-white' type="email" placeholder='Email' />
-            <textarea className='border-2 border-[var(--border)] rounded-md p-4 text-white' placeholder='Message' rows={6}></textarea>
-            <Button>Send Message</Button>
-          </form>
+          <ContactForm />
         </div>
       </div>
     </Container>
