@@ -42,7 +42,7 @@ const page = () => {
 
       <div className="mt-12 flex flex-col gap-8">
         {pastEvents.map((event, idx) => (
-          <PastEvents key={event.id || idx} {...event} />
+          <PastEvents key={idx} {...event} />
         ))}
       </div>
     </Container>
