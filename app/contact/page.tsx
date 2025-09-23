@@ -8,7 +8,7 @@ type IconComponent = React.ComponentType<{ size?: number }>;
 
 const page = () => {
   return (
-    <Container className='min-h-screen overflow-x-hidden px-4 md:px-6 lg:px-8'>
+    <Container className='min-h-screen px-4 md:px-6 lg:px-8'>
       <div className='flex flex-col lg:flex-row w-full items-start lg:items-center justify-between gap-8 lg:gap-0'>
         <div className='text-left w-full lg:w-[50%]'>
           <div className='w-fit'>
@@ -33,8 +33,8 @@ const page = () => {
         </div>
       </div>
 
-      <div className='w-full flex gap-4 px-16 mt-16'>
-        <div className='w-3/9'>
+      <div className='w-[90%] mx-auto flex gap-4 px-16 mt-16'>
+        <div className='w-1/3'>
           <div className='flex flex-col gap-4 font-bold mb-8 border-2 border-[var(--border)] p-4 rounded-2xl'>
             <div className='text-4xl font-semibold'>Get in Touch</div>
             <div className='text-lg font-semibold text-[var(--muted)] leading-6'>Do you have any questions? or do you have any suggestions for us?</div>
@@ -69,7 +69,7 @@ const page = () => {
             </div>
           </div>
         </div>
-        <div className='w-6/9'>
+        <div className='w-2/3'>
           <form className='flex flex-col gap-y-4'>
             <input className='border-2 border-[var(--border)] rounded-md p-4 text-white' type="text" placeholder='Name' />
             <input className='border-2 border-[var(--border)] rounded-md p-4 text-white' type="email" placeholder='Email' />
