@@ -116,8 +116,15 @@ The project uses Tailwind CSS with custom CSS variables for theming:
 1. Fork the repository
 2. Create a feature branch: `git checkout -b feature/your-feature`
 3. Commit changes: `git commit -m 'Add your feature'`
-4. Push to branch: `git push origin feature/your-feature`
+4. Push to branch: `git push fork feature/your-feature`
 5. Open a Pull Request
+
+### Development Workflow
+
+- Always work on feature branches, never directly on `main`
+- Write clear, descriptive commit messages
+- Test your changes before submitting a PR
+- Keep your fork updated with the original repository
 
 ## Contact
 
