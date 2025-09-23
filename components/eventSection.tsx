@@ -21,6 +21,11 @@ const EventCollapsible: React.FC<AccordionProps> = ({
   onHover,
   onLeave,
 }) => {
+  const [imageUrl, setimageUrl] = useState(imageSrc || "/members/placeholder.png");
+
+  const handleImageError = () => {
+    setimageUrl("/members/placeholder.png");
+  };
   return (
     <div
       className="w-full rounded-2xl border-2 border-[var(--border)] p-4 md:p-6 mt-6 md:mt-8 transition-all duration-300 ease-in-out hover:border-white/20"
@@ -36,18 +41,18 @@ const EventCollapsible: React.FC<AccordionProps> = ({
         </span>
       </div>
       <div>
-        <div className={`grid transition-all duration-500 ease-in-out ${
-          open ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'
-        }`}>
+        <div className={`grid transition-all duration-500 ease-in-out ${open ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'
+          }`}>
           <div className="overflow-hidden">
             <div className="flex flex-col mt-4 md:flex-row gap-4 md:gap-6 items-center">
               {imageSrc && (
                 <Image
-                  src={imageSrc}
+                  src={imageUrl}
                   width={160}
                   height={128}
                   alt={title}
                   className="w-full md:w-40 h-32 md:h-32 object-cover rounded-xl bg-[#111] aspect-square transition-transform duration-300 ease-in-out hover:scale-105"
+                  onError={handleImageError}
                 />
               )}
               <p className="text-[var(--muted-text)] text-sm md:text-base leading-relaxed">
@@ -159,7 +164,7 @@ const EventSection = () => {
           {/* <UpcomingEvent events={upCommingEvents} /> */}
         </div>
         <div className="flex flex-col justify-between w-full lg:w-1/2 h-full">
-          {pastEvents.map((event, idx) => (
+          {pastEvents.slice(0,3).map((event, idx) => (
             <EventCollapsible
               key={idx}
               title={event.title}
@@ -167,7 +172,7 @@ const EventSection = () => {
               description={event.description}
               open={openIndex === idx}
               onHover={() => setOpenIndex(idx)}
-              onLeave={() => {}}
+              onLeave={() => { }}
             />
           ))}
         </div>
