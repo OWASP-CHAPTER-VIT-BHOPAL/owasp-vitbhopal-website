@@ -128,8 +128,8 @@ The project uses Tailwind CSS with custom CSS variables for theming:
 
 ## Contact
 
-- **Email**: OWASP@gmail.com
-- **Phone**: +91 8223091234
+- **Email**: owaspclub@vitbhopal.ac.in
+- **Phone**: 9024955926
 - **Instagram**: [@owaspvitbhopal](https://www.instagram.com/owaspvitbhopal/)
 - **LinkedIn**: [OWASP VIT Bhopal](https://www.linkedin.com/company/owasp-vit-bhopal/)
 
