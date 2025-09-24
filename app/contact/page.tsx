@@ -1,9 +1,68 @@
 "use client";
 import { Button } from "@/components/button";
 import { Container } from "@/components/container";
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 
 type IconComponent = React.ComponentType<{ size?: number }>;
+
+// Security validation functions
+const validateInput = (input: string, fieldName: string): string => {
+  // Remove potentially dangerous characters and trim whitespace
+  let sanitized = input.trim();
+  
+  // Common XSS prevention - remove script tags and dangerous attributes
+  sanitized = sanitized.replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '');
+  sanitized = sanitized.replace(/on\w+="[^"]*"/gi, '');
+  sanitized = sanitized.replace(/on\w+='[^']*'/gi, '');
+  sanitized = sanitized.replace(/javascript:/gi, '');
+  
+  // SQL injection prevention for basic patterns
+  const sqlInjectionPatterns = [
+    /(\bUNION\b|\bSELECT\b|\bINSERT\b|\bDELETE\b|\bUPDATE\b|\bDROP\b|\bEXEC\b)/gi,
+    /(\|\||&&|;|--|\/\*|\*\/)/g
+  ];
+  
+  sqlInjectionPatterns.forEach(pattern => {
+    sanitized = sanitized.replace(pattern, '');
+  });
+  
+  // Field-specific validation
+  switch (fieldName) {
+    case 'name':
+      // Allow letters, spaces, hyphens, and apostrophes
+      sanitized = sanitized.replace(/[^a-zA-Z\s\-']/g, '');
+      // Limit length
+      if (sanitized.length > 50) {
+        sanitized = sanitized.substring(0, 50);
+      }
+      break;
+      
+    case 'email':
+      // Basic email validation - should be validated more thoroughly server-side
+      sanitized = sanitized.toLowerCase();
+      // Remove any characters that aren't valid in emails
+      sanitized = sanitized.replace(/[^a-zA-Z0-9@._%-]/g, '');
+      if (sanitized.length > 100) {
+        sanitized = sanitized.substring(0, 100);
+      }
+      break;
+      
+    case 'message':
+      // Allow letters, numbers, basic punctuation, but limit length
+      sanitized = sanitized.replace(/[<>]/g, ''); // Remove < and > to prevent HTML injection
+      if (sanitized.length > 1000) {
+        sanitized = sanitized.substring(0, 1000);
+      }
+      break;
+  }
+  
+  return sanitized;
+};
+
+const isValidEmail = (email: string): boolean => {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(email);
+};
 
 const ContactForm = () => {
   const [form, setForm] = useState({
@@ -14,36 +73,121 @@ const ContactForm = () => {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState("");
   const [error, setError] = useState("");
+  const [submissionCount, setSubmissionCount] = useState(0);
+  const [lastSubmissionTime, setLastSubmissionTime] = useState<number>(0);
+
+  // Rate limiting: max 5 submissions per minute
+  const checkRateLimit = useCallback((): boolean => {
+    const now = Date.now();
+    const timeWindow = 60000; // 1 minute in milliseconds
+    
+    // Reset count if outside time window
+    if (now - lastSubmissionTime > timeWindow) {
+      setSubmissionCount(0);
+      setLastSubmissionTime(now);
+      return true;
+    }
+    
+    // Check if within rate limit
+    if (submissionCount >= 5) {
+      setError("Rate limit exceeded. Please try again in a minute.");
+      return false;
+    }
+    
+    return true;
+  }, [submissionCount, lastSubmissionTime]);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
+    const sanitizedValue = validateInput(e.target.value, e.target.name);
+    setForm({ ...form, [e.target.name]: sanitizedValue });
     setSuccess("");
     setError("");
   };
 
+  const validateForm = (): boolean => {
+    // Basic validation
+    if (!form.name.trim()) {
+      setError("Name is required");
+      return false;
+    }
+    
+    if (!form.email.trim()) {
+      setError("Email is required");
+      return false;
+    }
+    
+    if (!isValidEmail(form.email)) {
+      setError("Please enter a valid email address");
+      return false;
+    }
+    
+    if (!form.message.trim()) {
+      setError("Message is required");
+      return false;
+    }
+    
+    if (form.message.trim().length < 10) {
+      setError("Message should be at least 10 characters long");
+      return false;
+    }
+    
+    return true;
+  };
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setLoading(true);
+    
+    // Clear previous messages
     setSuccess("");
     setError("");
+    
+    // Validate form
+    if (!validateForm()) {
+      return;
+    }
+    
+    // Check rate limit
+    if (!checkRateLimit()) {
+      return;
+    }
+    
+    setLoading(true);
 
     try {
       const res = await fetch("/api/contact", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
+        headers: { 
+          "Content-Type": "application/json",
+          "X-Requested-With": "XMLHttpRequest" // Helps identify AJAX requests
+        },
+        body: JSON.stringify({
+          name: form.name,
+          email: form.email,
+          message: form.message,
+          timestamp: new Date().toISOString()
+        }),
       });
+      
+      if (!res.ok) {
+        throw new Error(`HTTP error! status: ${res.status}`);
+      }
+      
       const data = await res.json();
+      
       if (data.success) {
         setSuccess("Message sent successfully!");
         setForm({ name: "", email: "", message: "" });
+        // Update rate limit counter
+        setSubmissionCount(prev => prev + 1);
+        setLastSubmissionTime(Date.now());
       } else {
         setError(data.error || "Failed to send message.");
       }
     } catch (err) {
-      setError("Failed to send message.");
+      console.error("Submission error:", err);
+      setError("Failed to send message. Please try again later.");
     } finally {
       setLoading(false);
     }
@@ -52,40 +196,62 @@ const ContactForm = () => {
   return (
     <form className="flex flex-col gap-y-4" onSubmit={handleSubmit}>
       <input
-        className="border-2 border-[var(--border)] rounded-2xl p-4 text-white"
+        className="border-2 border-[var(--border)] rounded-2xl p-4 text-white bg-transparent"
         type="text"
         name="name"
         placeholder="Name"
         value={form.name}
         onChange={handleChange}
         required
+        maxLength={50}
       />
       <input
-        className="border-2 border-[var(--border)] rounded-2xl p-4 text-white"
+        className="border-2 border-[var(--border)] rounded-2xl p-4 text-white bg-transparent"
         type="email"
         name="email"
         placeholder="Email"
         value={form.email}
         onChange={handleChange}
         required
+        maxLength={100}
       />
       <textarea
-        className="border-2 border-[var(--border)] rounded-2xl p-4 text-white"
+        className="border-2 border-[var(--border)] rounded-2xl p-4 text-white bg-transparent"
         name="message"
         placeholder="Message"
         rows={6}
         value={form.message}
         onChange={handleChange}
         required
+        maxLength={1000}
       ></textarea>
-      <Button>{loading ? "Sending..." : "Send Message"}</Button>
-      {success && <div className="text-green-500 text-sm mt-2">{success}</div>}
-      {error && <div className="text-red-500 text-sm mt-2">{error}</div>}
+      
+      <Button type="submit" disabled={loading}>
+        {loading ? "Sending..." : "Send Message"}
+      </Button>
+      
+      {success && (
+        <div className="text-green-500 text-sm mt-2 p-2 bg-green-500/10 rounded-lg">
+          {success}
+        </div>
+      )}
+      {error && (
+        <div className="text-red-500 text-sm mt-2 p-2 bg-red-500/10 rounded-lg">
+          {error}
+        </div>
+      )}
+      
+      {/* Rate limit indicator */}
+      {submissionCount > 0 && (
+        <div className="text-xs text-[var(--muted-text)] mt-1">
+          Submissions this minute: {submissionCount}/5
+        </div>
+      )}
     </form>
   );
 };
 
-const page = () => {
+const Page = () => {
   return (
     <Container className="min-h-screen px-4 md:px-6 lg:px-8">
       <div className="flex flex-col lg:flex-row w-full items-start lg:items-center justify-between gap-8 lg:gap-0">
