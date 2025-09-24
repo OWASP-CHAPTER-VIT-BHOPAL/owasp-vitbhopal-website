@@ -1,11 +1,73 @@
+// app/api/contact/route.ts
 import { Resend } from 'resend';
+import { Ratelimit } from '@upstash/ratelimit';
+import { Redis } from '@upstash/redis';
+import { NextRequest } from 'next/server';
 
+// Initialize services
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-export async function POST(req: Request) {
-  try {
-    const { name, email, message } = await req.json();
+// Rate limiter: max 3 requests per 10 minutes per IP
+const ratelimit = new Ratelimit({
+  redis: Redis.fromEnv(),
+  limiter: Ratelimit.slidingWindow(3, '10 m'),
+  analytics: true,
+});
 
+// Simple HTML tag stripper (basic XSS protection)
+function sanitizeInput(str: string): string {
+  if (typeof str !== 'string') return '';
+  return str
+    .replace(/</g, '<')
+    .replace(/>/g, '>')
+    .trim();
+}
+
+// Basic email validation
+function isValidEmail(email: string): boolean {
+  const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return re.test(email);
+}
+
+export async function POST(req: NextRequest) {
+  // 🔒 Rate limiting
+  const ip = req.ip ?? '127.0.0.1';
+  const { success: isAllowed } = await ratelimit.limit(ip);
+  if (!isAllowed) {
+    return Response.json(
+      { success: false, error: 'Too many requests. Please try again later.' },
+      { status: 429 }
+    );
+  }
+
+  try {
+    const body = await req.json();
+
+    // 🔒 Input validation
+    let { name, email, message } = body;
+
+    // Ensure all fields exist and are strings
+    if (typeof name !== 'string' || typeof email !== 'string' || typeof message !== 'string') {
+      return Response.json({ success: false, error: 'Invalid input types.' }, { status: 400 });
+    }
+
+    // Sanitize
+    name = sanitizeInput(name);
+    email = sanitizeInput(email);
+    message = sanitizeInput(message);
+
+    // Trim and check lengths
+    if (name.length < 1 || name.length > 100) {
+      return Response.json({ success: false, error: 'Name must be 1–100 characters.' }, { status: 400 });
+    }
+    if (!isValidEmail(email)) {
+      return Response.json({ success: false, error: 'Invalid email address.' }, { status: 400 });
+    }
+    if (message.length < 1 || message.length > 2000) {
+      return Response.json({ success: false, error: 'Message must be 1–2000 characters.' }, { status: 400 });
+    }
+
+    // ✉️ Send email
     const { data, error } = await resend.emails.send({
       from: 'OWASP VIT Bhopal Contact <onboarding@resend.dev>',
       to: [process.env.EMAIL_TO as string],
@@ -46,23 +108,17 @@ export async function POST(req: Request) {
           </div>
         </div>
       `,
-      text: `
-New Contact Form Submission
-This message was submitted via the OWASP VIT Bhopal Student Chapter Official Website.
-
-Name: ${name}
-Email: ${email}
-Message: ${message}
-Received At: ${new Date().toLocaleString()}
-      `,
+      text: `Name: ${name}\nEmail: ${email}\nMessage: ${message}\nReceived At: ${new Date().toLocaleString()}`,
     });
 
     if (error) {
-      return Response.json({ success: false, error }, { status: 500 });
+      console.error('Resend error:', error);
+      return Response.json({ success: false, error: 'Failed to send message.' }, { status: 500 });
     }
 
     return Response.json({ success: true, data }, { status: 201 });
   } catch (error) {
-    return Response.json({ success: false, error }, { status: 500 });
+    console.error('Unexpected error:', error);
+    return Response.json({ success: false, error: 'An unexpected error occurred.' }, { status: 500 });
   }
 }
