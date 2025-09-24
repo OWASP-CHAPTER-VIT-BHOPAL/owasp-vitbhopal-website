@@ -14,21 +14,18 @@ const ratelimit = new Ratelimit({
 });
 
 function getIP(req: NextRequest): string {
-  // Vercel sets this reliably
-  const realIP = req.headers.get('x-vercel-forwarded-for');
-  if (realIP) {
-    return realIP.split(',').pop()?.trim() || '127.0.0.1';
+  const vercelIP = req.headers.get('x-vercel-forwarded-for');
+  if (vercelIP) {
+    return vercelIP.split(',').pop()?.trim() || '127.0.0.1';
   }
 
-  // Fallback if deployed elsewhere with reverse proxy
   const xff = req.headers.get('x-forwarded-for');
   if (xff) {
     const ips = xff.split(',').map(ip => ip.trim());
-    return ips[ips.length - 1]; // last one is closest to server
+    return ips[ips.length - 1]; // last one is usually the client
   }
 
-  // As a last resort
-  return req.ip ?? '127.0.0.1';
+  return '127.0.0.1';
 }
 
 // Helper: Proper HTML escaping
