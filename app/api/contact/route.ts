@@ -15,22 +15,23 @@ const ratelimit = new Ratelimit({
 
 // Helper: Extract real client IP from Vercel headers
 function getIP(req: NextRequest): string {
-  // Vercel sets x-forwarded-for
   const xff = req.headers.get('x-forwarded-for');
   if (xff) {
-    // x-forwarded-for can be a comma-separated list; take the first one
     return xff.split(',')[0]?.trim() || '127.0.0.1';
   }
   return '127.0.0.1';
 }
 
-// Helper: Basic sanitization (prevent HTML/XSS)
-function sanitizeInput(str: string): string {
-  if (typeof str !== 'string') return '';
-  return str
-    .replace(/</g, '<')
-    .replace(/>/g, '>')
-    .trim();
+// Helper: Proper HTML escaping for all special characters
+function escapeHtml(unsafe: string): string {
+  if (typeof unsafe !== 'string') return '';
+  
+  return unsafe
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
 }
 
 // Helper: Validate email format
@@ -60,10 +61,10 @@ export async function POST(req: NextRequest) {
       return Response.json({ success: false, error: 'Invalid input.' }, { status: 400 });
     }
 
-    // Sanitize
-    const cleanName = sanitizeInput(name);
-    const cleanEmail = sanitizeInput(email);
-    const cleanMessage = sanitizeInput(message);
+    // Trim and basic validation
+    const cleanName = name.trim();
+    const cleanEmail = email.trim();
+    const cleanMessage = message.trim();
 
     // Validate lengths
     if (cleanName.length < 1 || cleanName.length > 100) {
@@ -76,7 +77,7 @@ export async function POST(req: NextRequest) {
       return Response.json({ success: false, error: 'Message must be 1–2000 characters.' }, { status: 400 });
     }
 
-    // ✉️ Send email via Resend
+    // ✉️ Send email via Resend - ESCAPE ALL VALUES FOR HTML CONTEXT
     const { data, error } = await resend.emails.send({
       from: 'OWASP VIT Bhopal Contact <onboarding@resend.dev>',
       to: [process.env.EMAIL_TO as string],
@@ -92,15 +93,15 @@ export async function POST(req: NextRequest) {
               <table cellpadding="8" cellspacing="0" border="0" style="width:100%; background:#fafafa; border-radius:10px;">
                 <tr>
                   <td style="font-weight:600; color:#111; width:120px;">Name:</td>
-                  <td style="color:#111;">${cleanName}</td>
+                  <td style="color:#111;">${escapeHtml(cleanName)}</td>
                 </tr>
                 <tr>
                   <td style="font-weight:600; color:#111;">Email:</td>
-                  <td style="color:#111;">${cleanEmail}</td>
+                  <td style="color:#111;">${escapeHtml(cleanEmail)}</td>
                 </tr>
                 <tr>
                   <td style="font-weight:600; color:#111;">Message:</td>
-                  <td style="white-space:pre-line; color:#111;">${cleanMessage}</td>
+                  <td style="white-space:pre-line; color:#111;">${escapeHtml(cleanMessage)}</td>
                 </tr>
                 <tr>
                   <td style="font-weight:600; color:#111;">Received At:</td>
