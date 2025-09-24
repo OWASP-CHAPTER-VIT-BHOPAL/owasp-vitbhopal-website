@@ -1,20 +1,30 @@
-// app/api/contact/route.ts
 import { Resend } from 'resend';
 import { Ratelimit } from '@upstash/ratelimit';
 import { Redis } from '@upstash/redis';
 import { NextRequest } from 'next/server';
 
-// Initialize services
+// Initialize Resend
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-// Rate limiter: max 3 requests per 10 minutes per IP
+// Initialize rate limiter (3 requests per 10 minutes per IP)
 const ratelimit = new Ratelimit({
   redis: Redis.fromEnv(),
   limiter: Ratelimit.slidingWindow(3, '10 m'),
   analytics: true,
 });
 
-// Simple HTML tag stripper (basic XSS protection)
+// Helper: Extract real client IP from Vercel headers
+function getIP(req: NextRequest): string {
+  // Vercel sets x-forwarded-for
+  const xff = req.headers.get('x-forwarded-for');
+  if (xff) {
+    // x-forwarded-for can be a comma-separated list; take the first one
+    return xff.split(',')[0]?.trim() || '127.0.0.1';
+  }
+  return '127.0.0.1';
+}
+
+// Helper: Basic sanitization (prevent HTML/XSS)
 function sanitizeInput(str: string): string {
   if (typeof str !== 'string') return '';
   return str
@@ -23,15 +33,15 @@ function sanitizeInput(str: string): string {
     .trim();
 }
 
-// Basic email validation
+// Helper: Validate email format
 function isValidEmail(email: string): boolean {
   const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   return re.test(email);
 }
 
 export async function POST(req: NextRequest) {
-  // 🔒 Rate limiting
-  const ip = req.ip ?? '127.0.0.1';
+  // 🔒 Rate limiting by IP
+  const ip = getIP(req);
   const { success: isAllowed } = await ratelimit.limit(ip);
   if (!isAllowed) {
     return Response.json(
@@ -43,31 +53,30 @@ export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
 
-    // 🔒 Input validation
-    let { name, email, message } = body;
+    // Destructure and validate input types
+    const { name, email, message } = body;
 
-    // Ensure all fields exist and are strings
     if (typeof name !== 'string' || typeof email !== 'string' || typeof message !== 'string') {
-      return Response.json({ success: false, error: 'Invalid input types.' }, { status: 400 });
+      return Response.json({ success: false, error: 'Invalid input.' }, { status: 400 });
     }
 
     // Sanitize
-    name = sanitizeInput(name);
-    email = sanitizeInput(email);
-    message = sanitizeInput(message);
+    const cleanName = sanitizeInput(name);
+    const cleanEmail = sanitizeInput(email);
+    const cleanMessage = sanitizeInput(message);
 
-    // Trim and check lengths
-    if (name.length < 1 || name.length > 100) {
+    // Validate lengths
+    if (cleanName.length < 1 || cleanName.length > 100) {
       return Response.json({ success: false, error: 'Name must be 1–100 characters.' }, { status: 400 });
     }
-    if (!isValidEmail(email)) {
+    if (!isValidEmail(cleanEmail)) {
       return Response.json({ success: false, error: 'Invalid email address.' }, { status: 400 });
     }
-    if (message.length < 1 || message.length > 2000) {
+    if (cleanMessage.length < 1 || cleanMessage.length > 2000) {
       return Response.json({ success: false, error: 'Message must be 1–2000 characters.' }, { status: 400 });
     }
 
-    // ✉️ Send email
+    // ✉️ Send email via Resend
     const { data, error } = await resend.emails.send({
       from: 'OWASP VIT Bhopal Contact <onboarding@resend.dev>',
       to: [process.env.EMAIL_TO as string],
@@ -83,15 +92,15 @@ export async function POST(req: NextRequest) {
               <table cellpadding="8" cellspacing="0" border="0" style="width:100%; background:#fafafa; border-radius:10px;">
                 <tr>
                   <td style="font-weight:600; color:#111; width:120px;">Name:</td>
-                  <td style="color:#111;">${name}</td>
+                  <td style="color:#111;">${cleanName}</td>
                 </tr>
                 <tr>
                   <td style="font-weight:600; color:#111;">Email:</td>
-                  <td style="color:#111;">${email}</td>
+                  <td style="color:#111;">${cleanEmail}</td>
                 </tr>
                 <tr>
                   <td style="font-weight:600; color:#111;">Message:</td>
-                  <td style="white-space:pre-line; color:#111;">${message}</td>
+                  <td style="white-space:pre-line; color:#111;">${cleanMessage}</td>
                 </tr>
                 <tr>
                   <td style="font-weight:600; color:#111;">Received At:</td>
@@ -108,7 +117,7 @@ export async function POST(req: NextRequest) {
           </div>
         </div>
       `,
-      text: `Name: ${name}\nEmail: ${email}\nMessage: ${message}\nReceived At: ${new Date().toLocaleString()}`,
+      text: `Name: ${cleanName}\nEmail: ${cleanEmail}\nMessage: ${cleanMessage}\nReceived At: ${new Date().toLocaleString()}`,
     });
 
     if (error) {
@@ -116,9 +125,9 @@ export async function POST(req: NextRequest) {
       return Response.json({ success: false, error: 'Failed to send message.' }, { status: 500 });
     }
 
-    return Response.json({ success: true, data }, { status: 201 });
+    return Response.json({ success: true }, { status: 201 });
   } catch (error) {
-    console.error('Unexpected error:', error);
+    console.error('Unexpected error in contact API:', error);
     return Response.json({ success: false, error: 'An unexpected error occurred.' }, { status: 500 });
   }
 }
