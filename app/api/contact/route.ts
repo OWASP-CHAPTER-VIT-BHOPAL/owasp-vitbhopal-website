@@ -9,23 +9,31 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 // Initialize rate limiter (3 requests per 10 minutes per IP)
 const ratelimit = new Ratelimit({
   redis: Redis.fromEnv(),
-  limiter: Ratelimit.slidingWindow(3, '10 m'),
+  limiter: Ratelimit.slidingWindow(3, '5 m'),
   analytics: true,
 });
 
-// Helper: Extract real client IP from Vercel headers
 function getIP(req: NextRequest): string {
+  // Vercel sets this reliably
+  const realIP = req.headers.get('x-vercel-forwarded-for');
+  if (realIP) {
+    return realIP.split(',').pop()?.trim() || '127.0.0.1';
+  }
+
+  // Fallback if deployed elsewhere with reverse proxy
   const xff = req.headers.get('x-forwarded-for');
   if (xff) {
-    return xff.split(',')[0]?.trim() || '127.0.0.1';
+    const ips = xff.split(',').map(ip => ip.trim());
+    return ips[ips.length - 1]; // last one is closest to server
   }
-  return '127.0.0.1';
+
+  // As a last resort
+  return req.ip ?? '127.0.0.1';
 }
 
-// Helper: Proper HTML escaping for all special characters
+// Helper: Proper HTML escaping
 function escapeHtml(unsafe: string): string {
   if (typeof unsafe !== 'string') return '';
-  
   return unsafe
     .replace(/&/g, '&amp;')
     .replace(/</g, '&lt;')
@@ -53,20 +61,16 @@ export async function POST(req: NextRequest) {
 
   try {
     const body = await req.json();
-
-    // Destructure and validate input types
     const { name, email, message } = body;
 
     if (typeof name !== 'string' || typeof email !== 'string' || typeof message !== 'string') {
       return Response.json({ success: false, error: 'Invalid input.' }, { status: 400 });
     }
 
-    // Trim and basic validation
     const cleanName = name.trim();
     const cleanEmail = email.trim();
     const cleanMessage = message.trim();
 
-    // Validate lengths
     if (cleanName.length < 1 || cleanName.length > 100) {
       return Response.json({ success: false, error: 'Name must be 1–100 characters.' }, { status: 400 });
     }
@@ -77,7 +81,6 @@ export async function POST(req: NextRequest) {
       return Response.json({ success: false, error: 'Message must be 1–2000 characters.' }, { status: 400 });
     }
 
-    // ✉️ Send email via Resend - ESCAPE ALL VALUES FOR HTML CONTEXT
     const { data, error } = await resend.emails.send({
       from: 'OWASP VIT Bhopal Contact <onboarding@resend.dev>',
       to: [process.env.EMAIL_TO as string],
