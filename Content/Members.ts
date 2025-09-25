@@ -41,7 +41,7 @@ const designTeam = [
   {
     name: "Saurabh Sharma",
     image: "/members/saurabh.png",
-    href: "https://www.headbanger.tech/",
+    href: "https://www.headbanger.me/",
   },
   {
     name: "Nitin Vishwakarma",
