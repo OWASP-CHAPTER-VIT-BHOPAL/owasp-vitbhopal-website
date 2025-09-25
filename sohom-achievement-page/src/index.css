@@ -1,0 +1,38 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply bg-[#0f0f11] text-white;
+}
+@layer utilities {
+  /* Hexagonal button: both sides clipped */
+  .clip-path-hex {
+    clip-path: polygon(10% 0, 90% 0, 100% 50%, 90% 100%, 10% 100%, 0 50%);
+  }
+}
+/* index.css */
+@layer utilities {
+  .dotted-rect {
+    position: relative;
+    width: 200px;     /* length */
+    height: 30px;     /* thickness */
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .dotted-rect::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle, rgba(255,255,255,0.6) 1px, transparent 1px);
+    background-size: 8px 8px; /* dot spacing */
+  }
+}
+@layer utilities {
+  .dashed-rect {
+    width: 200px;
+    height: 20px;
+    border: 1px dashed rgba(255,255,255,0.6);
+    border-radius: 6px;
+  }
+}
