@@ -1,4 +1,5 @@
 import { pastSpeakers } from "@/Content/Speakers";
+import SpeakersBig from "@/components/sections/SpeakersBig";
 import PastSpeakerCard from "@/components/cards/PastSpeakerCard";
 
 export default function PastSpeakersSection() {
@@ -18,10 +19,16 @@ export default function PastSpeakersSection() {
 
       <div className="my-3 w-full border-2 border-dashed border-white/12 sm:my-4" />
 
-      <div className="grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-6">
+      {/* Small screens: Older Card Grid */}
+      <div className="grid grid-cols-2 gap-4 md:hidden">
         {pastSpeakers.map((speaker) => (
           <PastSpeakerCard key={speaker.name} speaker={speaker} />
         ))}
+      </div>
+
+      {/* md screens and above: SpeakersBig */}
+      <div className="hidden md:block">
+        <SpeakersBig speakers={pastSpeakers} />
       </div>
     </section>
   );
