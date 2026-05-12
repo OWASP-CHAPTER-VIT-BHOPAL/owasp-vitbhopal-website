@@ -32,7 +32,7 @@ export default async function BlogIndexPage() {
             {posts.map((post) => (
               <article
                 key={post.slug}
-                className="group flex h-full flex-col overflow-hidden rounded-3xl bg-[#121212] shadow-[inset_2px_2px_8px_0px_rgba(255,255,255,0.05),inset_1px_0px_8px_0px_rgba(255,255,255,0.01)] transition-all duration-300 hover:bg-[#181818]"
+                className="group flex h-full flex-col overflow-hidden rounded-3xl bg-gradient-to-b from-[#202020] to-[#191919] shadow-[0_1px_0.5px_#ffffff1a_inset,0_1px_1px_#ffffff35_inset,0_10px_10px_-9px_#00000070,0_20px_20px_-14px_#00000060,0_0px_6px_0px_#00000060] transition-transform active:scale-[0.97]"
               >
                 <div className="flex flex-1 flex-col gap-4 p-6">
                   <h2 className="text-xl leading-tight font-bold text-white group-hover:text-white/90">

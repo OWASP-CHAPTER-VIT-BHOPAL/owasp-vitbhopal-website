@@ -81,7 +81,7 @@ export default function AboutPage() {
             {stats.map((stat, i) => (
               <motion.div
                 key={stat.label}
-                className="rounded-3xl bg-[#121212] p-5 shadow-[inset_2px_2px_8px_0px_rgba(255,255,255,0.05),inset_1px_0px_8px_0px_rgba(255,255,255,0.01)] md:p-6"
+                className="rounded-3xl bg-gradient-to-b from-[#202020] to-[#191919] p-5 shadow-[0_1px_0.5px_#ffffff1a_inset,0_1px_1px_#ffffff35_inset,0_10px_10px_-9px_#00000070,0_20px_20px_-14px_#00000060,0_0px_6px_0px_#00000060] md:p-6"
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.3 }}
@@ -112,7 +112,7 @@ export default function AboutPage() {
             return (
               <motion.div
                 key={pillar.title}
-                className="flex flex-col gap-4 rounded-3xl bg-[#121212] p-6 shadow-[inset_2px_2px_8px_0px_rgba(255,255,255,0.05),inset_1px_0px_8px_0px_rgba(255,255,255,0.01)] md:p-8"
+                className="flex flex-col gap-4 rounded-3xl bg-gradient-to-b from-[#202020] to-[#191919] p-6 shadow-[0_1px_0.5px_#ffffff1a_inset,0_1px_1px_#ffffff35_inset,0_10px_10px_-9px_#00000070,0_20px_20px_-14px_#00000060,0_0px_6px_0px_#00000060] md:p-8"
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.3 }}
@@ -143,7 +143,7 @@ export default function AboutPage() {
             return (
               <motion.div
                 key={activity.category}
-                className="flex flex-col gap-4 rounded-3xl bg-[#121212] p-6 shadow-[inset_2px_2px_8px_0px_rgba(255,255,255,0.05),inset_1px_0px_8px_0px_rgba(255,255,255,0.01)] transition-colors hover:bg-[#181818] md:p-8"
+                className="flex flex-col gap-4 rounded-3xl bg-gradient-to-b from-[#202020] to-[#191919] p-6 shadow-[0_1px_0.5px_#ffffff1a_inset,0_1px_1px_#ffffff35_inset,0_10px_10px_-9px_#00000070,0_20px_20px_-14px_#00000060,0_0px_6px_0px_#00000060] md:p-8"
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.3 }}
@@ -169,7 +169,7 @@ export default function AboutPage() {
 
       {/* ── Section 5: Join CTA ── */}
       <motion.div
-        className="mt-20 rounded-3xl bg-[#121212] p-8 text-center shadow-[inset_2px_2px_8px_0px_rgba(255,255,255,0.05),inset_1px_0px_8px_0px_rgba(255,255,255,0.01)] md:mt-28 md:p-12"
+        className="mt-20 rounded-3xl bg-gradient-to-b from-[#202020] to-[#191919] p-8 text-center shadow-[0_1px_0.5px_#ffffff1a_inset,0_1px_1px_#ffffff35_inset,0_10px_10px_-9px_#00000070,0_20px_20px_-14px_#00000060,0_0px_6px_0px_#00000060] md:mt-28 md:p-12"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.3 }}

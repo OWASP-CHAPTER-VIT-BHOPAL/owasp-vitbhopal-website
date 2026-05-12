@@ -16,7 +16,7 @@ export default function AchievementCard({
   description,
 }: AchievementCardProps) {
   return (
-    <div className="group relative flex w-full flex-col items-start gap-4 overflow-visible rounded-3xl bg-white/5 p-3 shadow-[inset_2px_2px_8px_0px_rgba(255,255,255,0.05),inset_1px_0px_8px_0px_rgba(255,255,255,0.01)] backdrop-blur-[75px] sm:flex-row sm:gap-6 sm:p-4 md:p-6">
+    <div className="group relative flex w-full flex-col items-start gap-4 overflow-visible rounded-3xl bg-gradient-to-b from-[#202020] to-[#191919] p-3 shadow-[0_1px_0.5px_#ffffff1a_inset,0_1px_1px_#ffffff35_inset,0_10px_10px_-9px_#00000070,0_20px_20px_-14px_#00000060,0_0px_6px_0px_#00000060] transition-transform active:scale-[0.97] sm:flex-row sm:gap-6 sm:p-4 md:p-6">
       {/* Photo Container */}
       <div className="relative z-30 -mt-8 h-[180px] w-full flex-shrink-0 overflow-hidden rounded-[18px] border-[3px] border-[#E18C50] bg-gradient-to-b from-transparent to-black shadow-2xl sm:-mt-10 sm:h-[160px] sm:w-[180px] md:-mt-12 md:h-[180px] md:w-[240px] lg:h-[200px] lg:w-[280px]">
         <Image

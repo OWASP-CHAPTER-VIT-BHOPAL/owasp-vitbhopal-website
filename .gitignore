@@ -25,6 +25,8 @@
 .DS_Store
 *.pem
 
+/Skills
+
 # debug
 npm-debug.log*
 yarn-debug.log*

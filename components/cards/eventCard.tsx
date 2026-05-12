@@ -8,7 +8,7 @@ const eventCard = () => {
       {upCommingEvents.map((event, idx) => (
         <div
           key={event.title + idx}
-          className="relative flex h-[144px] w-[480px] flex-col justify-between overflow-hidden rounded-3xl shadow-[inset_2px_2px_8px_0px_rgba(255,255,255,0.05),inset_1px_0px_8px_0px_rgba(255,255,255,0.01)]"
+          className="relative flex h-[144px] w-[480px] flex-col justify-between overflow-hidden rounded-3xl bg-gradient-to-b from-[#202020] to-[#191919] shadow-[0_1px_0.5px_#ffffff1a_inset,0_1px_1px_#ffffff35_inset,0_10px_10px_-9px_#00000070,0_20px_20px_-14px_#00000060,0_0px_6px_0px_#00000060] transition-transform active:scale-[0.97]"
         >
           <div className="pointer-events-none absolute inset-0 z-0">
             <EventcardSVG />

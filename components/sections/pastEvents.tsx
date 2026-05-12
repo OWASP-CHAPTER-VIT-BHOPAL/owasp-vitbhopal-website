@@ -35,13 +35,13 @@ const PastEvents: React.FC<PastEventsProps> = ({
   return (
     <button
       type="button"
-      className="group mx-auto h-full w-full cursor-pointer overflow-hidden rounded-3xl bg-[#121212] text-left shadow-[inset_2px_2px_8px_0px_rgba(255,255,255,0.05),inset_1px_0px_8px_0px_rgba(255,255,255,0.01)] transition-colors hover:bg-[#181818]"
+      className="group mx-auto h-full w-full cursor-pointer overflow-hidden rounded-3xl bg-gradient-to-b from-[#202020] to-[#191919] text-left shadow-[0_1px_0.5px_#ffffff1a_inset,0_1px_1px_#ffffff35_inset,0_10px_10px_-9px_#00000070,0_20px_20px_-14px_#00000060,0_0px_6px_0px_#00000060] transition-transform active:scale-[0.97]"
       onClick={onClick}
     >
       <div className="flex h-full flex-col">
         {imgUrl && (
           <div className="p-2">
-            <div className="relative aspect-video w-full overflow-hidden rounded-[calc(var(--radius-3xl)-(--spacing(2)))]">
+            <div className="relative aspect-video w-full overflow-hidden rounded-[calc(var(--radius-3xl)-(--spacing(2)))] bg-[#0f0f0f]">
               <Image
                 src={imageSrc}
                 alt={title}
@@ -50,6 +50,7 @@ const PastEvents: React.FC<PastEventsProps> = ({
                 className="h-full w-full rounded-[calc(var(--radius-3xl)-(--spacing(2)))] object-cover"
                 onError={handleImageError}
               />
+              <div className="pointer-events-none absolute inset-0 z-10 rounded-[calc(var(--radius-3xl)-(--spacing(2)))] shadow-[0_0.5px_0_#ffffff50,0_2px_6px_#00000090_inset]" />
             </div>
           </div>
         )}

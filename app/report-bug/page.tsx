@@ -9,7 +9,7 @@ type FormState = {
   email: string;
   category: string;
   steps: string;
-  severity: string; 
+  severity: string;
   screenRecording: string;
 };
 
@@ -47,13 +47,13 @@ const BugReportForm = () => {
       attachments.length
         ? `${attachments.length} file${attachments.length > 1 ? "s" : ""} attached`
         : "No files selected",
-    [attachments]
+    [attachments],
   );
 
   const handleInputChange = (
     event: React.ChangeEvent<
       HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-    >
+    >,
   ) => {
     const { name, value } = event.target;
     setForm((prev) => ({ ...prev, [name]: value }));
@@ -143,24 +143,24 @@ const BugReportForm = () => {
   };
 
   return (
-    <Container className="min-h-screen px-4 md:px-6 lg:px-8">
-      <CustomToaster/>
-      
+    <Container className="min-h-screen bg-[#0f0f0f] px-4 md:px-6 lg:px-8">
+      <CustomToaster />
+
       <Header title="Report a Bug">
         Help us improve our platform by sharing detailed feedback whenever you
         encounter an issue. We use every report to deliver a better, more
         reliable experience for the OWASP VIT Bhopal community.
       </Header>
 
-      <h2 className='text-3xl md:text-4xl text-[#1b1a1d] font-medium'> .</h2>
-      <div className='w-full border-2 my-4 border-dashed border-white/12' />
+      <h2 className="text-3xl font-medium text-[#1b1a1d] md:text-4xl"> .</h2>
+      <div className="my-4 w-full border-2 border-dashed border-white/12" />
 
-      <div className="max-w-5xl mx-auto mt-8 md:mt-16">
-        <div className="rounded-3xl border-2 border-[var(--border)] bg-white/5 backdrop-blur-sm p-6 md:p-8 shadow-2xl">
+      <div className="mx-auto mt-8 max-w-5xl md:mt-16">
+        <div className="rounded-3xl bg-gradient-to-b from-[#202020] to-[#191919] p-6 shadow-[0_1px_0.5px_#ffffff1a_inset,0_1px_1px_#ffffff35_inset,0_10px_10px_-9px_#00000070,0_20px_20px_-14px_#00000060,0_0px_6px_0px_#00000060] md:p-8">
           <form onSubmit={handleSubmit} className="space-y-6">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
               {/* Left Column */}
-              <div className="space-y-6 flex flex-col">
+              <div className="flex flex-col space-y-6">
                 <div className="space-y-2">
                   <label
                     htmlFor="email"
@@ -175,7 +175,7 @@ const BugReportForm = () => {
                     value={form.email}
                     onChange={handleInputChange}
                     required
-                    className="w-full border-2 border-[var(--border)] bg-transparent rounded-2xl p-3 md:p-4 text-white placeholder:text-white/40 focus:outline-none focus:border-white/60 transition-colors text-sm md:text-base"
+                    className="w-full rounded-2xl bg-[#0f0f0f] p-3 text-sm text-white shadow-[0_0.5px_0_#ffffff50,0_2px_6px_#00000090_inset] transition-colors placeholder:text-white/40 focus:outline-none md:p-4 md:text-base"
                     placeholder="you@example.com"
                   />
                 </div>
@@ -195,16 +195,16 @@ const BugReportForm = () => {
                       value={form.category}
                       onChange={handleInputChange}
                       required
-                      className="w-full appearance-none border-2 border-[var(--border)] bg-transparent rounded-2xl p-3 md:p-4 text-white focus:outline-none focus:border-white/60 transition-colors text-sm md:text-base"
+                      className="w-full appearance-none rounded-2xl bg-[#0f0f0f] p-3 text-sm text-white shadow-[0_0.5px_0_#ffffff50,0_2px_6px_#00000090_inset] transition-colors focus:outline-none md:p-4 md:text-base"
                     >
-                      <option className="bg-neutral-900 text-white" value="">
+                      <option className="bg-[#0f0f0f] text-white" value="">
                         Select a Category
                       </option>
                       {categories.map((category) => (
                         <option
                           key={category}
                           value={category}
-                          className="bg-neutral-900 text-white"
+                          className="bg-[#0f0f0f] text-white"
                         >
                           {category}
                         </option>
@@ -242,16 +242,16 @@ const BugReportForm = () => {
                       name="severity"
                       value={form.severity}
                       onChange={handleInputChange}
-                      className="w-full appearance-none border-2 border-[var(--border)] bg-transparent rounded-2xl p-3 md:p-4 text-white focus:outline-none focus:border-white/60 transition-colors text-sm md:text-base"
+                      className="w-full appearance-none rounded-2xl bg-[#0f0f0f] p-3 text-sm text-white shadow-[0_0.5px_0_#ffffff50,0_2px_6px_#00000090_inset] transition-colors focus:outline-none md:p-4 md:text-base"
                     >
-                      <option className="bg-neutral-900 text-white" value="">
+                      <option className="bg-[#0f0f0f] text-white" value="">
                         Select severity
                       </option>
                       {severityLevels.map((level) => (
                         <option
                           key={level}
                           value={level}
-                          className="bg-neutral-900 text-white"
+                          className="bg-[#0f0f0f] text-white"
                         >
                           {level}
                         </option>
@@ -289,15 +289,15 @@ const BugReportForm = () => {
                     type="url"
                     value={form.screenRecording}
                     onChange={handleInputChange}
-                    className="w-full border-2 border-[var(--border)] bg-transparent rounded-2xl p-3 md:p-4 text-white placeholder:text-white/40 focus:outline-none focus:border-white/60 transition-colors text-sm md:text-base"
+                    className="w-full rounded-2xl bg-[#0f0f0f] p-3 text-sm text-white shadow-[0_0.5px_0_#ffffff50,0_2px_6px_#00000090_inset] transition-colors placeholder:text-white/40 focus:outline-none md:p-4 md:text-base"
                     placeholder="https://..."
                   />
                 </div>
               </div>
 
               {/* Right Column */}
-              <div className="space-y-6 flex flex-col">
-                <div className="space-y-2 flex-1 flex flex-col">
+              <div className="flex flex-col space-y-6">
+                <div className="flex flex-1 flex-col space-y-2">
                   <label
                     htmlFor="steps"
                     className="block text-sm font-medium text-white"
@@ -311,7 +311,7 @@ const BugReportForm = () => {
                     value={form.steps}
                     onChange={handleInputChange}
                     required
-                    className="w-full flex-1 border-2 border-[var(--border)] bg-transparent rounded-2xl p-3 md:p-4 text-white placeholder:text-white/40 focus:outline-none focus:border-white/60 transition-colors resize-none text-sm md:text-base"
+                    className="w-full flex-1 resize-none rounded-2xl bg-[#0f0f0f] p-3 text-sm text-white shadow-[0_0.5px_0_#ffffff50,0_2px_6px_#00000090_inset] transition-colors placeholder:text-white/40 focus:outline-none md:p-4 md:text-base"
                     placeholder="Describe the bug, steps to reproduce, expected behavior, and actual behavior..."
                   />
                 </div>
@@ -323,7 +323,7 @@ const BugReportForm = () => {
                   <label
                     onDragOver={handleDragOver}
                     onDrop={handleDrop}
-                    className="flex cursor-pointer flex-col items-center justify-center rounded-2xl border-2 border-dashed border-[var(--border)] bg-white/5 px-6 py-6 text-center transition-all hover:border-white/40 hover:bg-white/10"
+                    className="flex cursor-pointer flex-col items-center justify-center rounded-2xl bg-[#0f0f0f] px-6 py-6 text-center shadow-[0_0.5px_0_#ffffff50,0_2px_6px_#00000090_inset] transition-all"
                   >
                     <input
                       type="file"
@@ -355,7 +355,7 @@ const BugReportForm = () => {
                     <p className="mt-1 text-xs text-white/60">
                       Up to {MAX_ATTACHMENTS} files, 10 MB each
                     </p>
-                    <p className="mt-2 text-xs text-white/80 font-medium">
+                    <p className="mt-2 text-xs font-medium text-white/80">
                       {attachmentSummary}
                     </p>
                   </label>
@@ -364,7 +364,7 @@ const BugReportForm = () => {
                       {attachments.map((file, index) => (
                         <li
                           key={`${file.name}-${index}`}
-                          className="flex items-center justify-between rounded-2xl border-2 border-[var(--border)] bg-white/5 px-3 md:px-4 py-2.5 hover:bg-white/10 transition-colors"
+                          className="flex items-center justify-between rounded-2xl bg-gradient-to-b from-[#202020] to-[#191919] px-3 py-2.5 shadow-[0_1px_0.5px_#ffffff1a_inset,0_1px_1px_#ffffff35_inset,0_4px_4px_-2px_#00000070] transition-colors md:px-4"
                         >
                           <span className="truncate pr-3 text-sm text-white/90">
                             {file.name}
@@ -372,7 +372,7 @@ const BugReportForm = () => {
                           <button
                             type="button"
                             onClick={() => handleAttachmentRemove(index)}
-                            className="text-xs font-medium text-red-400 transition hover:text-red-300 flex-shrink-0"
+                            className="flex-shrink-0 text-xs font-medium text-red-400 transition hover:text-red-300"
                           >
                             Remove
                           </button>
@@ -387,7 +387,7 @@ const BugReportForm = () => {
             <button
               type="submit"
               disabled={loading}
-              className="w-full rounded-2xl bg-gradient-to-r from-white to-white/90 px-6 py-3.5 text-sm md:text-base font-semibold text-black shadow-lg transition-all hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+              className="w-full rounded-2xl bg-gradient-to-b from-[#202020] to-[#191919] px-6 py-3.5 text-sm font-semibold text-white/90 shadow-[0_1px_0.5px_#ffffff1a_inset,0_1px_1px_#ffffff35_inset,0_10px_10px_-9px_#00000070,0_20px_20px_-14px_#00000060,0_0px_6px_0px_#00000060] transition-all hover:brightness-110 active:scale-[0.97] disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:scale-100 disabled:active:scale-100 md:text-base"
             >
               {loading ? "Submitting..." : "Report bug"}
             </button>

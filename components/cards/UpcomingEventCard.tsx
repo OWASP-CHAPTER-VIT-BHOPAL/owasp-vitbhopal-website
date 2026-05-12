@@ -29,11 +29,11 @@ const UpcomingEventCard: React.FC<UpcomingEventCardProps> = ({
 }) => {
   if (layout === "detailed") {
     return (
-      <div className="group relative mt-6 w-full overflow-hidden rounded-3xl bg-[#121212] shadow-[inset_2px_2px_8px_0px_rgba(255,255,255,0.05),inset_1px_0px_8px_0px_rgba(255,255,255,0.01)] transition-colors hover:bg-[#181818] md:mt-8">
+      <div className="group relative mt-6 w-full overflow-hidden rounded-3xl bg-gradient-to-b from-[#202020] to-[#191919] shadow-[0_1px_0.5px_#ffffff1a_inset,0_1px_1px_#ffffff35_inset,0_10px_10px_-9px_#00000070,0_20px_20px_-14px_#00000060,0_0px_6px_0px_#00000060] transition-all active:scale-[0.97] md:mt-8">
         <div className="grid grid-cols-1 md:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)]">
           {imgUrl && (
             <div className="p-2">
-              <div className="relative h-64 min-h-64 w-full overflow-hidden rounded-[calc(var(--radius-2xl)-(--spacing(2)))] bg-[#111] md:h-full">
+              <div className="relative h-64 min-h-64 w-full overflow-hidden rounded-[calc(var(--radius-2xl)-(--spacing(2)))] bg-[#0f0f0f] md:h-full">
                 <Image
                   src={imgUrl}
                   alt={title}
@@ -42,6 +42,7 @@ const UpcomingEventCard: React.FC<UpcomingEventCardProps> = ({
                   sizes="(max-width: 768px) 100vw, 55vw"
                 />
                 <div className="absolute inset-0 bg-linear-to-t from-black/40 via-transparent to-transparent md:bg-linear-to-r md:from-transparent md:to-black/30" />
+                <div className="pointer-events-none absolute inset-0 z-10 rounded-[calc(var(--radius-2xl)-(--spacing(2)))] shadow-[0_0.5px_0_#ffffff50,0_2px_6px_#00000090_inset]" />
               </div>
             </div>
           )}
@@ -91,11 +92,11 @@ const UpcomingEventCard: React.FC<UpcomingEventCardProps> = ({
   }
 
   return (
-    <div className="group relative mt-6 w-full overflow-hidden rounded-3xl bg-[#121212] shadow-[inset_2px_2px_8px_0px_rgba(255,255,255,0.05),inset_1px_0px_8px_0px_rgba(255,255,255,0.01)] transition-colors hover:bg-[#181818] md:mt-8">
+    <div className="group relative mt-6 w-full overflow-hidden rounded-3xl bg-gradient-to-b from-[#202020] to-[#191919] shadow-[0_1px_0.5px_#ffffff1a_inset,0_1px_1px_#ffffff35_inset,0_10px_10px_-9px_#00000070,0_20px_20px_-14px_#00000060,0_0px_6px_0px_#00000060] transition-all active:scale-[0.97] md:mt-8">
       {/* Banner image — full, no trim */}
       {imgUrl && (
         <div className="p-2">
-          <div className="relative w-full overflow-hidden rounded-[calc(var(--radius-2xl)-(--spacing(2)))] bg-[#111]">
+          <div className="relative w-full overflow-hidden rounded-[calc(var(--radius-2xl)-(--spacing(2)))] bg-[#0f0f0f]">
             <Image
               src={imgUrl}
               alt={title}
@@ -104,6 +105,7 @@ const UpcomingEventCard: React.FC<UpcomingEventCardProps> = ({
               className="h-auto w-full rounded-[calc(var(--radius-2xl)-(--spacing(2)))] object-contain transition-transform duration-700"
               sizes="(max-width: 768px) 100vw, 50vw"
             />
+            <div className="pointer-events-none absolute inset-0 z-10 rounded-[calc(var(--radius-2xl)-(--spacing(2)))] shadow-[0_0.5px_0_#ffffff50,0_2px_6px_#00000090_inset]" />
           </div>
         </div>
       )}

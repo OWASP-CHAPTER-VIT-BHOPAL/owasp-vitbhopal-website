@@ -32,9 +32,12 @@ const SponsorCard: React.FC<SponsorCardProps> = ({
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className={cn("group w-full max-w-75", className)}
+      className={cn(
+        "group w-full max-w-75 transition-transform active:scale-[0.97]",
+        className,
+      )}
     >
-      <div className="relative aspect-video w-full overflow-hidden rounded-3xl bg-zinc-900/40 p-6 shadow-[inset_2px_2px_8px_0px_rgba(255,255,255,0.05),inset_1px_0px_8px_0px_rgba(255,255,255,0.01)] transition-all duration-300 hover:bg-zinc-800/60">
+      <div className="relative aspect-video w-full overflow-hidden rounded-3xl bg-gradient-to-b from-[#202020] to-[#191919] p-6 shadow-[0_1px_0.5px_#ffffff1a_inset,0_1px_1px_#ffffff35_inset,0_10px_10px_-9px_#00000070,0_20px_20px_-14px_#00000060,0_0px_6px_0px_#00000060] transition-all duration-300">
         <div className="flex h-full w-full items-center justify-center">
           <div className="relative h-full w-full">
             <Image

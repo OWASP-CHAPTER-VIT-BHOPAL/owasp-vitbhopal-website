@@ -60,7 +60,7 @@ const Footer = () => {
   return (
     <footer className="relative my-4 md:my-8">
       <Container className="px-4 md:px-6 lg:px-8">
-        <div className="rounded-3xl bg-[#121212] px-5 pt-5 pb-3 shadow-[inset_2px_2px_8px_0px_rgba(255,255,255,0.05),inset_1px_0px_8px_0px_rgba(255,255,255,0.01)] md:px-10 md:pt-10 md:pb-6">
+        <div className="rounded-3xl bg-gradient-to-b from-[#202020] to-[#191919] px-5 pt-5 pb-3 shadow-[0_1px_0.5px_#ffffff1a_inset,0_1px_1px_#ffffff35_inset,0_10px_10px_-9px_#00000070,0_20px_20px_-14px_#00000060,0_0px_6px_0px_#00000060] md:px-10 md:pt-10 md:pb-6">
           {/* Main footer content */}
           <div className="mb-5 grid grid-cols-2 gap-x-6 gap-y-5 md:mb-8 md:gap-8 lg:grid-cols-4 lg:gap-10">
             {/* Brand Section */}
@@ -120,6 +120,16 @@ const Footer = () => {
                   <a
                     key={item.href}
                     href={item.href}
+                    target={
+                      item.name === "Press Kit" || item.href.startsWith("http")
+                        ? "_blank"
+                        : undefined
+                    }
+                    rel={
+                      item.name === "Press Kit" || item.href.startsWith("http")
+                        ? "noopener noreferrer"
+                        : undefined
+                    }
                     className="text-sm text-gray-300/80 transition-colors hover:text-white"
                   >
                     {item.name}
@@ -148,7 +158,7 @@ const Footer = () => {
                     href={item.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex h-9 w-9 items-center justify-center rounded-xl bg-[#1a1a1a] text-white/70 shadow-[inset_2px_2px_8px_0px_rgba(255,255,255,0.05),inset_1px_0px_8px_0px_rgba(255,255,255,0.01)] transition-all hover:bg-[#252525] hover:text-white md:h-10 md:w-10"
+                    className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-b from-[#202020] to-[#191919] text-white/70 shadow-[0_1px_0.5px_#ffffff1a_inset,0_1px_1px_#ffffff35_inset,0_4px_4px_-3px_#00000070,0_0px_2px_0px_#00000060] transition-all hover:text-white active:scale-95 md:h-10 md:w-10"
                     aria-label={item.name}
                   >
                     <SocialIcon name={item.name} size={18} />

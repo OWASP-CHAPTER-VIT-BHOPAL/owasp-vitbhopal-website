@@ -104,7 +104,7 @@ export default function CarouselSection() {
 }
 
 const Card = ({ src }: { src: string }) => (
-  <div className="group pointer-events-none relative mx-4 h-[200px] w-[300px] shrink-0 overflow-hidden rounded-3xl bg-[#121212] shadow-[inset_2px_2px_8px_0px_rgba(255,255,255,0.05),inset_1px_0px_8px_0px_rgba(255,255,255,0.01)] select-none md:h-[300px]">
+  <div className="group pointer-events-none relative mx-4 h-[200px] w-[300px] shrink-0 overflow-hidden rounded-3xl bg-[#0f0f0f] shadow-[0_0.5px_0_#ffffff50,0_2px_6px_#00000090_inset] select-none md:h-[300px]">
     <Image
       src={src}
       alt="Gallery Image"

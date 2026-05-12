@@ -77,7 +77,7 @@ export default function SponsorsPage() {
         )}
       </div>
 
-      <div className="mt-20 rounded-3xl bg-[#121212] p-8 text-center shadow-[inset_2px_2px_8px_0px_rgba(255,255,255,0.05),inset_1px_0px_8px_0px_rgba(255,255,255,0.01)] md:p-12">
+      <div className="mt-20 rounded-3xl bg-gradient-to-b from-[#202020] to-[#191919] p-8 text-center shadow-[0_1px_0.5px_#ffffff1a_inset,0_1px_1px_#ffffff35_inset,0_10px_10px_-9px_#00000070,0_20px_20px_-14px_#00000060,0_0px_6px_0px_#00000060] md:p-12">
         <h2 className="mb-4 text-2xl font-bold md:text-3xl">
           Become a Sponsor
         </h2>

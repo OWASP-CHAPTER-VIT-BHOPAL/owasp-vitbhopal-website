@@ -58,7 +58,7 @@ const ContactForm = () => {
   return (
     <form className="flex h-full flex-col gap-y-4" onSubmit={handleSubmit}>
       <input
-        className="rounded-3xl bg-[#121212] p-3 text-sm text-white shadow-[inset_2px_2px_8px_0px_rgba(255,255,255,0.05),inset_1px_0px_8px_0px_rgba(255,255,255,0.01)] transition-colors placeholder:text-white/40 focus:ring-1 focus:ring-white/40 focus:outline-none md:p-4 md:text-base"
+        className="rounded-3xl bg-[#0f0f0f] p-3 text-sm text-white shadow-[0_0.5px_0_#ffffff50,0_2px_6px_#00000090_inset] transition-colors placeholder:text-white/40 focus:ring-1 focus:ring-white/40 focus:outline-none md:p-4 md:text-base"
         type="text"
         name="name"
         placeholder="Name"
@@ -67,7 +67,7 @@ const ContactForm = () => {
         required
       />
       <input
-        className="rounded-3xl bg-[#121212] p-3 text-sm text-white shadow-[inset_2px_2px_8px_0px_rgba(255,255,255,0.05),inset_1px_0px_8px_0px_rgba(255,255,255,0.01)] transition-colors placeholder:text-white/40 focus:ring-1 focus:ring-white/40 focus:outline-none md:p-4 md:text-base"
+        className="rounded-3xl bg-[#0f0f0f] p-3 text-sm text-white shadow-[0_0.5px_0_#ffffff50,0_2px_6px_#00000090_inset] transition-colors placeholder:text-white/40 focus:ring-1 focus:ring-white/40 focus:outline-none md:p-4 md:text-base"
         type="email"
         name="email"
         placeholder="Email"
@@ -76,7 +76,7 @@ const ContactForm = () => {
         required
       />
       <textarea
-        className="flex-1 resize-none rounded-3xl bg-[#121212] p-3 text-sm text-white shadow-[inset_2px_2px_8px_0px_rgba(255,255,255,0.05),inset_1px_0px_8px_0px_rgba(255,255,255,0.01)] transition-colors placeholder:text-white/40 focus:ring-1 focus:ring-white/40 focus:outline-none md:p-4 md:text-base"
+        className="flex-1 resize-none rounded-3xl bg-[#0f0f0f] p-3 text-sm text-white shadow-[0_0.5px_0_#ffffff50,0_2px_6px_#00000090_inset] transition-colors placeholder:text-white/40 focus:ring-1 focus:ring-white/40 focus:outline-none md:p-4 md:text-base"
         name="message"
         placeholder="Message"
         rows={7}
@@ -115,7 +115,7 @@ const page = () => {
         <div className="grid grid-cols-1 gap-6 md:gap-8 lg:grid-cols-5">
           {/* Left Side - Contact Info */}
           <div className="lg:col-span-2">
-            <div className="flex h-full flex-col justify-between gap-3 rounded-3xl bg-[#121212] p-4 shadow-[inset_2px_2px_8px_0px_rgba(255,255,255,0.05),inset_1px_0px_8px_0px_rgba(255,255,255,0.01)] md:gap-4 md:p-6">
+            <div className="flex h-full flex-col justify-between gap-3 rounded-3xl bg-gradient-to-b from-[#202020] to-[#191919] p-4 shadow-[0_1px_0.5px_#ffffff1a_inset,0_1px_1px_#ffffff35_inset,0_10px_10px_-9px_#00000070,0_20px_20px_-14px_#00000060,0_0px_6px_0px_#00000060] md:gap-4 md:p-6">
               <div className="text-2xl font-normal md:text-3xl lg:text-4xl">
                 Get in Touch
               </div>
@@ -125,7 +125,7 @@ const page = () => {
               </div>
 
               {/* Email */}
-              <div className="flex-start flex items-center gap-x-2 rounded-3xl bg-[#121212] p-3 shadow-[inset_2px_2px_8px_0px_rgba(255,255,255,0.05),inset_1px_0px_8px_0px_rgba(255,255,255,0.01)] transition-colors hover:bg-[#181818] md:p-4">
+              <div className="flex-start flex items-center gap-x-2 rounded-3xl bg-[#0f0f0f] p-3 shadow-[0_0.5px_0_#ffffff50,0_2px_6px_#00000090_inset] transition-all hover:bg-white/5 md:p-4">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="20"
@@ -149,7 +149,7 @@ const page = () => {
               </div>
 
               {/* Phone */}
-              <div className="flex-start flex items-center gap-x-2 rounded-3xl bg-[#121212] p-3 shadow-[inset_2px_2px_8px_0px_rgba(255,255,255,0.05),inset_1px_0px_8px_0px_rgba(255,255,255,0.01)] transition-colors hover:bg-[#181818] md:p-4">
+              <div className="flex-start flex items-center gap-x-2 rounded-3xl bg-[#0f0f0f] p-3 shadow-[0_0.5px_0_#ffffff50,0_2px_6px_#00000090_inset] transition-all hover:bg-white/5 md:p-4">
                 <svg
                   width="20"
                   height="20"
@@ -180,7 +180,7 @@ const page = () => {
                         href={social.href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex h-10 w-10 items-center justify-center rounded-3xl bg-[#1a1a1a] shadow-[inset_2px_2px_8px_0px_rgba(255,255,255,0.05),inset_1px_0px_8px_0px_rgba(255,255,255,0.01)] transition-colors hover:bg-[#252525] md:h-12 md:w-12"
+                        className="flex h-10 w-10 items-center justify-center rounded-3xl bg-gradient-to-b from-[#202020] to-[#191919] shadow-[0_1px_0.5px_#ffffff1a_inset,0_1px_1px_#ffffff35_inset,0_4px_4px_-3px_#00000070,0_0px_2px_0px_#00000060] transition-all hover:text-white active:scale-95 md:h-12 md:w-12"
                         aria-label={social.name}
                       >
                         <IconComponent className="h-5 w-5 md:h-6 md:w-6" />

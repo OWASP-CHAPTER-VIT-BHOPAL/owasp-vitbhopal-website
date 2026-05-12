@@ -31,7 +31,7 @@ const EventCollapsible: React.FC<AccordionProps> = ({
   };
   return (
     <div
-      className="mt-6 w-full rounded-3xl bg-[#121212] p-4 shadow-[inset_2px_2px_8px_0px_rgba(255,255,255,0.05),inset_1px_0px_8px_0px_rgba(255,255,255,0.01)] transition-all duration-300 ease-in-out md:mt-8 md:p-6"
+      className="mt-6 w-full rounded-3xl bg-gradient-to-b from-[#202020] to-[#191919] p-4 shadow-[0_1px_0.5px_#ffffff1a_inset,0_1px_1px_#ffffff35_inset,0_10px_10px_-9px_#00000070,0_20px_20px_-14px_#00000060,0_0px_6px_0px_#00000060] transition-transform duration-300 ease-in-out active:scale-[0.99] md:mt-8 md:p-6"
       onMouseEnter={onHover}
       onMouseLeave={onLeave}
     >
@@ -54,14 +54,16 @@ const EventCollapsible: React.FC<AccordionProps> = ({
           <div className="overflow-hidden">
             <div className="mt-4 flex flex-col items-center gap-4 md:flex-row md:gap-6">
               {imageSrc && (
-                <Image
-                  src={imageUrl}
-                  width={160}
-                  height={128}
-                  alt={title}
-                  className="aspect-square h-32 w-full rounded-xl bg-[#111] object-cover transition-transform duration-300 ease-in-out hover:scale-105 md:h-32 md:w-40"
-                  onError={handleImageError}
-                />
+                <div className="relative aspect-square h-32 w-full flex-shrink-0 overflow-hidden rounded-xl bg-[#0f0f0f] md:h-32 md:w-40">
+                  <Image
+                    src={imageUrl}
+                    fill
+                    alt={title}
+                    className="object-cover transition-transform duration-300 ease-in-out hover:scale-105"
+                    onError={handleImageError}
+                  />
+                  <div className="pointer-events-none absolute inset-0 z-10 rounded-xl shadow-[0_0.5px_0_#ffffff50,0_2px_6px_#00000090_inset]" />
+                </div>
               )}
               <p className="text-sm leading-relaxed text-(--muted-text) md:text-base">
                 {description}
